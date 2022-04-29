@@ -1,12 +1,11 @@
 .article {
     @apply  p-4
-    w-full
     my-3
-    sm:my-12
     hover:cursor-pointer 
     hover:bg-gray-400  
     sm:hover:bg-opacity-50
-    font-Montserrat 
+    font-Montserrat
+    text-white
     text-xl
     sm:ease-out
     sm:duration-300
