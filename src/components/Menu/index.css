@@ -1,4 +1,4 @@
-.menu {
+.menuV {
     @apply
     bg-white
     bg-opacity-10
@@ -11,7 +11,19 @@
     flex
     sm:flex-col
     flex-row
-    items-center
+}
+
+.menuH {
+    @apply
+    bg-white
+    bg-opacity-10
+    border-opacity-5
+    shadow-md
+    backdrop-blur
+    h-20
+    w-full 
+    flex 
+    flex-row
 }
 
 /* From https://css.glass */
