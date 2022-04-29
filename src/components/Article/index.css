@@ -1,0 +1,15 @@
+.article {
+    @apply  p-4
+    w-full
+    my-3
+    sm:my-12
+    hover:cursor-pointer 
+    hover:bg-gray-400  
+    sm:hover:bg-opacity-50
+    font-Montserrat 
+    text-xl
+    sm:ease-out
+    sm:duration-300
+    active:bg-gray-400
+    active:bg-opacity-50
+}
