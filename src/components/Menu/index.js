@@ -1,9 +1,8 @@
 import React from 'react'
 import ListOfArticles from '../ListOfArticles'
 
-export default function Menu() {
-  return <div className="menu">
-       <ListOfArticles className="articles"/>
+export default function Menu(params) {  
+  return <div className={params.css}>
+       <ListOfArticles list={params.list} css={params.cssArticles}/>
   </div>
-  
 }
