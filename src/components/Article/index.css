@@ -7,8 +7,20 @@
     font-Montserrat
     text-white
     text-xl
+    text-center
     sm:ease-out
     sm:duration-300
     active:bg-gray-400
     active:bg-opacity-50
+
+    rounded-md
+    flex
+    items-center
+    justify-center
+}
+
+/* Quiero dos estilos de articulos y uno PADRE */
+
+.selected {
+    @apply border-2 border-amber-500 bg-zinc-800
 }
