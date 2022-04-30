@@ -3,10 +3,23 @@ import Article from '../Article'
 
 export default function ListOfArticles(params) {
   const { list } = params
+
+  let url = window.location.href.split("/")[4]
+  
+  const conditionRefactor = () => {
+    url === 'serie' ? url = 'SERIES' 
+    : url === 'movie' ? url = 'MOVIES' : url = ''
+  }
+
+  conditionRefactor()
+  const condition = (e) => e === url ? 'selected' : ''
+
+
   return <div className={params.css}>
    {
        Object.keys(list).map(function(e) {
-            return <Article key={e} children={e} url={this[e]} / >
+            
+            return <Article key={e} children={e} url={this[e]} cssArticle={condition(e)} / >
         }, list)
    }
     
