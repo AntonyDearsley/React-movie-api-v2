@@ -8,6 +8,8 @@ import Error404 from './pages/404'
 import Movies from './pages/Movies';
 import Series from './pages/Series';
 import Games from './pages/Games';
+import SearchAll from './pages/SearchAll';
+import MovieDetail from './pages/MovieDetail';
 
 
 export default function App() {
@@ -33,6 +35,11 @@ export default function App() {
       />  
 
       <Route
+        component={SearchAll}
+        path="/search/:keyword" 
+      />
+
+      <Route
         component={SearchMovies}
         path="/search/movie/:keyword" 
       />
@@ -41,13 +48,11 @@ export default function App() {
         component={SearchSeries}
         path="/search/serie/:keyword" 
       />
-
       
-      
-      {/* <Route
-        component={Detail}
-        path="/gif/:id"
-      />   */}
+      <Route
+        component={MovieDetail}
+        path="/movie/detail/:id"
+      />
 
       <Route
         component={Error404}
