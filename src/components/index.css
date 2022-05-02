@@ -4,5 +4,6 @@
 @import "./Menu";
 @import "./Article";
 @import "./ListOfArticles";
+@import "./Other";
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
