@@ -12,11 +12,12 @@ export default async function getAll({ keyword, page }) {
         .then(res => res.json())
         .then(response => {
             const data = response.results
-            const movies = data.map(movie => { 
-                const { name, id, poster_path, media_type } = movie 
+            const elements = data.map(element => { 
+                const { title, name, id, poster_path, media_type } = element 
                 const url = getImage(poster_path)
-                return url === '' ? {id, name, url: img404, media_type} : { id, name, url , media_type }
+                return url === '' ? {title, id, name, url: img404, media_type} 
+                : { title, id, name, url , media_type }
             })
-            return movies
+            return elements
         })
 }
