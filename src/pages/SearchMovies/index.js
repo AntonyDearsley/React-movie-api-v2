@@ -17,28 +17,35 @@ export default function SearchMovies({ params }) {
         'GAMES': ''
     }
 
-    
-
-    if (parameter.length === 0){
-        return <div id='container' className='bg-zinc-900 h-full text-white flex flex-col items-center'>
-            <Menu list={list} css={"menuH"} cssArticles={"articlesH"}/>
-            <div className='bg-[#1b1b1b] h-screen w-full 
-            relative flex justify-center items-center overflow-x-hidden'>
-                <E404 />
-            </div>
-        </div>
-        
-    }
-
+ 
     return <div id='container' className='bg-zinc-900 h-full text-white flex flex-col items-center'>
             <Menu list={list} css={"menuH"} cssArticles={"articlesH"}/>
-            <div className='container'>
-                <ListOfElements element={parameter} />
-            </div>
+
+            {parameter.loading === true ?
+
+                <div className='container flex justify-center items-center h-screen'>
+                    <span class="loader" />
+                </div>  
+        
+            : parameter.results.length === 0 ? 
+
+                <div className='bg-[#1b1b1b] h-screen w-full 
+                    relative flex justify-center items-center overflow-hidden'>
+                    <E404 />
+                </div>
+            
+            :
+                <>
+                    <div className='container'>
+                        <ListOfElements element={parameter.results} />
+                    </div>
                 
-            <div>
-                <Button handleClick={handleClick}>Más Películas</Button>
-            </div>
-        </div>
+                    <div>
+                        <Button handleClick={handleClick}>Más Películas</Button>
+                    </div>
+                </>
+
+            }
+    </div>
 }
     

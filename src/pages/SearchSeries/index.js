@@ -15,26 +15,35 @@ export default function SearchSeries({ params }) {
         'GAMES': ''
     }
     
-    
-    if (parameter.length === 0) {
-        return <div id='container' className='bg-zinc-900 h-full text-white flex flex-col items-center'>
-            <Menu list={list} css={"menuH"} cssArticles={"articlesH"} />
-            <div className='bg-[#1b1b1b] h-screen w-full 
-                relative flex justify-center items-center overflow-x-hidden' >
-                <E404 />
-            </div>
-        </div>
-    }
 
     return <div id='container' className='bg-zinc-900 h-full text-white flex flex-col items-center'>
-            <Menu list={list} css={"menuH"} cssArticles={"articlesH"} />
-            <div className='container'>
-                <ListOfElements element={parameter} />
-            </div>
+            <Menu list={list} css={"menuH"} cssArticles={"articlesH"}/>
+
+            {parameter.loading === true ?
+
+                <div className='container flex justify-center h-screen items-center'>
+                    <span class="loader" />
+                </div>  
+        
+            : parameter.results.length === 0 ? 
+
+                <div className='bg-[#1b1b1b] h-screen w-full 
+                    relative flex justify-center items-center overflow-x-hidden'>
+                    <E404 />
+                </div>
+            
+            :
+                <>
+                    <div className='container'>
+                        <ListOfElements element={parameter.results} />
+                    </div>
                 
-            <div>
-                <Button handleClick={handleClick}>Más Series</Button>
-            </div>
-        </div>
+                    <div>
+                        <Button handleClick={handleClick}>Más Series</Button>
+                    </div>
+                </>
+
+            }
+    </div>
 }
     
