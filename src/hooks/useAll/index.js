@@ -2,13 +2,17 @@ import { useEffect, useState } from 'react'
 import getAll from '../../services/getAll'
 
 export function useAll({ keyword }) {
-    const [parameter, setParameter] = useState([])
+    const [parameter, setParameter] = useState(
+      {loading: true, results: []}
+    )
     const [page] = useState(1)
 
     useEffect(() => {
         getAll({ keyword , page })
             .then(elements => {
-              setParameter(elements)
+              setTimeout(() => {
+                setParameter({ loading: false, results: elements })
+              }, 1500)
               /*
               setTimeout(() => {
                 window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
@@ -18,5 +22,7 @@ export function useAll({ keyword }) {
     }, [keyword, page]) 
 
 
-    return {parameter, setParameter};
+
+
+    return { parameter, setParameter }
 }

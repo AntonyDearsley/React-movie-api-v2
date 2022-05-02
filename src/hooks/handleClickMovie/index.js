@@ -11,7 +11,7 @@ export function useHandleClickMovie({ keyword }) {
         setPages(page+1)
         getMovies({ keyword , page })
         .then(elements => {
-            setParameter(parameter.concat(elements))
+            setParameter({ results: parameter.results.concat(elements) })
         })
         /*
         setTimeout(() => {

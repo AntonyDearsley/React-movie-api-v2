@@ -11,7 +11,7 @@ export function useHandleClickAll({ keyword }) {
         setPages(page+1)
         getAll({ keyword , page })
         .then(elements => {
-            setParameter(parameter.concat(elements))
+            setParameter({ results: parameter.results.concat(elements) })
         })
         /*
         setTimeout(() => {

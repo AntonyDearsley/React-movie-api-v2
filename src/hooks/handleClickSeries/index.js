@@ -11,7 +11,7 @@ export function useHandleClickSeries({ keyword }) {
         setPages(page+1)
         getSeries({ keyword , page })
         .then(elements => {
-            setParameter(parameter.concat(elements))
+            setParameter({ results: parameter.results.concat(elements) })
         })
         /*
         setTimeout(() => {
