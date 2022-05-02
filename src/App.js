@@ -10,6 +10,7 @@ import Series from './pages/Series';
 import Games from './pages/Games';
 import SearchAll from './pages/SearchAll';
 import MovieDetail from './pages/MovieDetail';
+import SerieDetail from './pages/SerieDetail';
 
 
 export default function App() {
@@ -52,6 +53,12 @@ export default function App() {
       <Route
         component={MovieDetail}
         path="/movie/detail/:id"
+      />
+
+      
+      <Route
+        component={SerieDetail}
+        path="/serie/detail/:id"
       />
 
       <Route
