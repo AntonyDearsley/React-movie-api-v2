@@ -19,6 +19,7 @@ export default function Home() {
   const [keyword, setKeyword] = useState('')
   const [, pushLocation] = useLocation()
   const parameter = useBackdrop()
+  let i = -1
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -30,32 +31,41 @@ export default function Home() {
     setKeyword(e.target.value)
   }
 
-  let i = -1
-  console.log(parameter)
+
+  const handleClick = e => {
+    const number = e.target.id.split('/')[0]
+    const id = e.target.id.split('/')[1]
+    number < 20 ? pushLocation(`/movie/detail/${id}`) :
+    pushLocation(`/serie/detail/${id}`)
+  }
 
   return <div id='container' className='home'>
     <Menu list={list} css={"menuV"} cssArticles={"articlesV"} />
     <div className='h-screen sm:w-screen flex flex-col items-center'>
      
       <div className='w-11/12 bg-white my-10'>       
-            <Carousel className=''
-             autoPlay={true} infiniteLoop={true} showArrows={true} 
+            <Carousel className='carousel' autoPlay={setTimeout(true, 1000)} 
+            infiniteLoop={true} showArrows={false} 
              showIndicators={false} showStatus={false} showThumbs={false} 
-             interval={8000} transitionTime={2000}>
+             interval={5000} transitionTime={2000}>
                    
                {parameter === undefined ?
-                    <div className=''>
+                    <div className='bg-black flex justify-center items-center'>
+                      <div className=''>
                           <img className='h-96'
-                          src="https://www.infodrones.it/wp-content/uploads/2018/09/load-800x450.png.webp" 
+                          src="https://fbflurry.files.wordpress.com/2020/08/giphy-9.gif" 
                           alt='loader'/>
+                      </div>
                     </div>
                  :  
                  parameter[0].map(() => { 
                     i++;
-                    return <div className='flex justify-center items-center' key={parameter[0][i]}>
-                      <div className='absolute z-10 w-[255px] h-96 '>
+                    return <div className='flex justify-center items-center' 
+                    key={parameter[2][i]}>
+                      <div className='absolute z-10 w-[255px] h-96 cursor-pointer    ' 
+                      id={`${i}/${parameter[2][i]}`} title={`${i}${parameter[2][i]}`} onClick={handleClick}>
                       <img 
-                          src={parameter[1][i]} alt='img1' className='h-full'/>
+                          src={parameter[1][i]} alt={`img${i}`} className='h-full'/>
                       </div> 
                        <img className='h-96 brightness-75 blur-[2px]'
                        src={parameter[0][i]} alt={`img${i}`}/>
@@ -71,7 +81,7 @@ export default function Home() {
                         w-[20rem] sm:w-[23rem] lg:w-[38rem] outline-double 
                         focus:outline-8 focus:outline-white font-Montserrat' />
         <FontAwesomeIcon icon={faSearch} className="text-black text-xl absolute 
-                        right-5 top-5 hover:cursor-pointer" onClick={handleSubmit}/>
+                        right-5 top-4 hover:cursor-pointer" onClick={handleSubmit}/>
       </form>
     </div>
   </div>
