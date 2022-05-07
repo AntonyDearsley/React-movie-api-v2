@@ -12,19 +12,22 @@ export default async function getBackdrop() {
     
     const arr = []
     const arr2 = []
+    const arrId = []
 
     fetch(apiURLMovie)
         .then(res => res.json())
         .then(response => {
             const data = response.results
             data.map(movie => { 
-                const { backdrop_path, poster_path } = movie 
+                const { backdrop_path, poster_path, id } = movie 
 
                 const url = getImage(backdrop_path)
                 arr.push(url)
 
                 const img = getImage(poster_path)
                 arr2.push(img)
+
+                arrId.push(id)
 
                 return 1
             }) 
@@ -35,7 +38,7 @@ export default async function getBackdrop() {
         .then(response => {
             const data = response.results
             data.map(serie => { 
-                const { backdrop_path , poster_path} = serie 
+                const { backdrop_path , poster_path, id } = serie 
 
                 const url = getImage(backdrop_path)
                 arr.push(url)
@@ -43,9 +46,11 @@ export default async function getBackdrop() {
                 const img = getImage(poster_path)
                 arr2.push(img)
 
+                arrId.push(id)
+
                 return 1
             }) 
         })
 
-    return [arr, arr2]
+    return [arr, arr2, arrId]
 }
