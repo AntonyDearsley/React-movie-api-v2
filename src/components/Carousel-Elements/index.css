@@ -1,0 +1,15 @@
+.slide-image {
+    @apply w-full
+    h-full
+    object-cover
+}
+
+.slide {
+    @apply absolute bg-[#ffff];
+    width: inherit;
+    height: inherit;
+}
+
+.slide:target {
+    opacity: 1;
+}
