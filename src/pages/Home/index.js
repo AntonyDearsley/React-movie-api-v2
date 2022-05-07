@@ -52,10 +52,10 @@ export default function Home() {
                  :  
                  parameter[0].map(() => { 
                     i++;
-                    return <div className='' key={parameter[0][i]}>
-                      <div className='absolute z-10 w-[255px]  left-[37%]'>
+                    return <div className='flex justify-center items-center' key={parameter[0][i]}>
+                      <div className='absolute z-10 w-[255px] h-96 '>
                       <img 
-                          src={parameter[1][i]} alt='img1' className='h-30'/>
+                          src={parameter[1][i]} alt='img1' className='h-full'/>
                       </div> 
                        <img className='h-96 brightness-75 blur-[2px]'
                        src={parameter[0][i]} alt={`img${i}`}/>
