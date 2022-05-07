@@ -1,4 +1,4 @@
-const url = 'https://image.tmdb.org/t/p/w500'
+const url = 'https://image.tmdb.org/t/p/original'
 
 
 export default function getImage(poster_path) { 
