@@ -45,7 +45,7 @@ export default function Home() {
      
       <div className='w-11/12 bg-white my-10'>       
             <Carousel className='carousel' autoPlay={setTimeout(true, 1000)} 
-            infiniteLoop={true} showArrows={false} 
+            infiniteLoop={true} showArrows={true} 
              showIndicators={false} showStatus={false} showThumbs={false} 
              interval={5000} transitionTime={2000}>
                    
@@ -61,9 +61,10 @@ export default function Home() {
                  parameter[0].map(() => { 
                     i++;
                     return <div className='flex justify-center items-center' 
+                    title="El puntero está cancelando el comportamiento normal"
                     key={parameter[2][i]}>
-                      <div className='absolute z-10 w-[255px] h-96 cursor-pointer    ' 
-                      id={`${i}/${parameter[2][i]}`} title={`${i}${parameter[2][i]}`} onClick={handleClick}>
+                      <div className='absolute z-10 w-[255px] h-96 cursor-pointer' 
+                      id={`${i}/${parameter[2][i]}`} title={`Top ${i+1}`} onClick={handleClick}>
                       <img 
                           src={parameter[1][i]} alt={`img${i}`} className='h-full'/>
                       </div> 
@@ -81,7 +82,8 @@ export default function Home() {
                         w-[20rem] sm:w-[23rem] lg:w-[38rem] outline-double 
                         focus:outline-8 focus:outline-white font-Montserrat' />
         <FontAwesomeIcon icon={faSearch} className="text-black text-xl absolute 
-                        right-5 top-4 hover:cursor-pointer" onClick={handleSubmit}/>
+                        right-5 top-4 hover:cursor-pointer" title="buscador"
+                        onClick={handleSubmit}/>
       </form>
     </div>
   </div>
