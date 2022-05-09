@@ -17,7 +17,9 @@ export default function SerieDetail({ params }) {
     return <section className='h-screen overflow-hidden flex flex-col font-Montserrat'>
         <section className='w-full h-12 flex items-center pl-6 bg-zinc-900'>
             <FontAwesomeIcon icon={faLongArrowAltLeft} onClick={handleClick}
-            className='h-10 flex items-center text-white hover:cursor-pointer' />
+            className='h-10 flex items-center text-white hover:cursor-pointer' >
+                HOME
+            </FontAwesomeIcon>
         </section>
         <section className='flex flex-wrap w-screen'>
             <div className='h-full w-full -z-[9] bg-black/80 absolute'></div>
