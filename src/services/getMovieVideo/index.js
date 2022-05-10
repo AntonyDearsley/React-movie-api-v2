@@ -12,7 +12,9 @@ export default async function getMovieVideo({ id }) {
             const data = response.results
             if (data.length !== 0) {
                 for (let element of data) {
-                    if (element.type === 'Trailer') return element.key 
+                    if (element.type === 'Trailer') return element.key
+                    else if (element.type === 'Teaser') return element.key 
+                    else if (element.type === 'Clip') return element.key  
                 }             
             } else {
                 
@@ -21,9 +23,10 @@ export default async function getMovieVideo({ id }) {
                 .then(response => {
                     const data = response.results
                     for (let element of data) {
-                        if (element.type === 'Trailer') return element.key 
-                    }      
-                })
+                        if (element.type === 'Trailer') return element.key  
+                        else if (element.type === 'Teaser') return element.key 
+                        else if (element.type === 'Clip') return element.key    
+                }})
             }
         })
 }
