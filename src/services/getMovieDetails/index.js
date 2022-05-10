@@ -19,8 +19,12 @@ export default async function getMovieDetails({ id }) {
             const backdropurl = getImage(backdrop_path)
             const posterurl = getImage(poster_path)
 
-            return { backdropurl, homepage, title, 
-                overview, posterurl, tagline, vote_average,
+            return overview === '' ? { backdropurl, homepage, title, 
+                overview: 'No está disponible.' , posterurl, tagline, vote_average,
                 release_date, genres }
+            :
+            {backdropurl, homepage, title, 
+            overview, posterurl, tagline, vote_average,
+            release_date, genres }
         })
 }

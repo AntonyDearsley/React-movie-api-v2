@@ -19,8 +19,13 @@ export default async function getSerieDetails({ id }) {
             const backdropurl = getImage(backdrop_path)
             const posterurl = getImage(poster_path)
 
-            return { backdropurl, homepage, name, overview,
+            return overview === '' ?
+            { backdropurl, homepage, name, overview: 'No está disponible bobo.',
                 posterurl, vote_average,
                 first_air_date, genres }
+            :
+            { backdropurl, homepage, name, overview,
+            posterurl, vote_average,
+            first_air_date, genres }
         })
 }
