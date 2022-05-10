@@ -44,8 +44,8 @@ export default function Home() {
     <div className='h-screen sm:w-screen flex flex-col items-center'>
      
       <div className='w-11/12 bg-white my-10'>       
-            <Carousel className='carousel' autoPlay={setTimeout(true, 1000)} 
-            infiniteLoop={true} showArrows={true} 
+            <Carousel className='carousel border-0' autoPlay={setTimeout(true, 1000)} 
+            infiniteLoop={true} showArrows={true} stopOnHover={false}
              showIndicators={false} showStatus={false} showThumbs={false} 
              interval={5000} transitionTime={2000}>
                    
@@ -61,7 +61,6 @@ export default function Home() {
                  parameter[0].map(() => { 
                     i++;
                     return <div className='flex justify-center items-center' 
-                    title="El puntero está cancelando el comportamiento normal"
                     key={parameter[2][i]}>
                       <div className='absolute z-10 w-[255px] h-96 cursor-pointer' 
                       id={`${i}/${parameter[2][i]}`} title={`Top ${i+1}`} onClick={handleClick}>
