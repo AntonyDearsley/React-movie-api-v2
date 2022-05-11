@@ -31,7 +31,10 @@ export default function MovieDetail({ params }) {
     }
 
 
-    return <section className='h-screen  flex flex-col font-Montserrat'>
+    return <section className='h-screen  flex flex-col font-Montserrat relative'>
+        {/* Background with filter */}
+        <div className='h-full object-cover w-full -z-[9] bg-black/80 absolute'></div>
+            <img src={parameter.backdropurl} className="w-full -z-10 absolute h-full" alt="" />
 
         <section className='w-full h-12 flex items-center pl-6 bg-zinc-900 '>
             <div className='w-10 flex items-center text-zinc-100 hover:cursor-pointer'
@@ -43,9 +46,7 @@ export default function MovieDetail({ params }) {
 
         <section className='flex flex-wrap h-full max-h-[92%]  relative'>
 
-            {/* Background with filter */}
-            <div className='h-full object-cover w-full -z-[9] bg-black/80 absolute'></div>
-            <img src={parameter.backdropurl} className="w-full -z-10 absolute h-full" alt="" />
+            
 
             {/* Poster with buttom to website */}
             <article className='px-8 h-full w-[28%] flex items-center relavite'>

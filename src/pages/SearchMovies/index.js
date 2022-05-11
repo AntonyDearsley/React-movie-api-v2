@@ -18,7 +18,8 @@ export default function SearchMovies({ params }) {
     }
 
  
-    return <div id='container' className='bg-zinc-900 h-full text-white flex flex-col items-center'>
+    return <div id='container' className={parameter.results.length >= 6 ? 'bg-zinc-900 h-full text-white flex flex-col items-center' :
+    'bg-zinc-900 h-screen text-white flex flex-col items-center' }>
             <Menu list={list} css={"menuH"} cssArticles={"articlesH"}/>
 
             {parameter.loading === true ?
@@ -40,9 +41,13 @@ export default function SearchMovies({ params }) {
                         <ListOfElements element={parameter.results} />
                     </div>
                 
-                    <div>
-                        <Button handleClick={handleClick}>Más Películas</Button>
-                    </div>
+                    {parameter.results.length >= 20 ? 
+                        <div>
+                            <Button handleClick={handleClick}>Más Películas</Button>
+                        </div>
+                        :
+                        <> </>
+                    }
                 </>
 
             }
