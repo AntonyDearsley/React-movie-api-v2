@@ -12,14 +12,17 @@ export default function ListOfArticles(params) {
   }
 
   conditionRefactor()
-  const condition = (e) => e === url ? 'selected' : ''
+  const condition = (e) => e === url ? 'selectedA' : ''
 
 
-  return <div className={params.css}>
+  return <div className={
+    params.orientation === 'H' ? 'articlesH'
+    : params.orientation === 'V' ? 'articlesV' : ''
+  }>
    {
        Object.keys(list).map(function(e) {
             
-            return <Article key={e} children={e} url={this[e]} cssArticle={condition(e)} / >
+            return <Article key={e} children={e} url={this[e]} cssArticles={condition(e)} orientation={params.orientation}/ >
         }, list)
    }
     

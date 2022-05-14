@@ -21,6 +21,14 @@
 
 /* Quiero dos estilos de articulos y uno PADRE */
 
-.selected {
+.selectedA{
     @apply border-2 border-amber-500 bg-zinc-800
+}
+
+.lineaV {
+    @apply  border-t-2 border-amber-500 mt-10
+}
+
+.lineaH {
+    @apply  border-l-2 border-amber-500 
 }
