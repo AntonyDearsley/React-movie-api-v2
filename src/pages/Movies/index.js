@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { faLongArrowAltLeft, faStar } from '@fortawesome/fontawesome-free-solid'
+import { faAngleLeft, faAngleRight } from '@fortawesome/fontawesome-free-solid'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useLocation } from 'wouter'
 import { Carousel } from 'react-responsive-carousel';
@@ -7,13 +8,20 @@ import { useMoviePopular } from '../../hooks/useMoviePopular';
 import './index.css'
 
 import ItemsCarousel from 'react-items-carousel';
+import { useMoviePlaying } from '../../hooks/useMoviePlaying';
+import { useMovieTop } from '../../hooks/useMovieTop'
 
 
 
 export default function Movies() {
     const [, pushLocation] = useLocation()
-    const parameter = useMoviePopular()
-    const [activeItemIndex, setActiveItemIndex] = useState(0);
+    const moviePopular = useMoviePopular()
+    const moviePlaying = useMoviePlaying()
+    const movieTop = useMovieTop()
+    const [activeItemIndex, setActiveItemIndex] = useState(0)
+    const [activeItemIndex1, setActiveItemIndex1] = useState(0)
+    const [activeItemIndex2, setActiveItemIndex2] = useState(0)
+    const [activeItemIndex3, setActiveItemIndex3] = useState(0)
 
     const handleClick = () => {
         window.history.back()
@@ -43,7 +51,7 @@ export default function Movies() {
                 showIndicators={true} showStatus={false} showThumbs={false}
                 interval={5000} transitionTime={2000}>
 
-                {parameter.loading === true ?
+                {moviePopular.loading === true ?
                     <div className='bg-black flex justify-center items-center'>
                         <div className=''>
                             <img className='h-96'
@@ -52,12 +60,20 @@ export default function Movies() {
                         </div>
                     </div>
                     :
-                    parameter.results.map(element => {
+                    moviePopular.results.map(element => {
                         return <div className='' key={element.id}>
-                            <div className=' h-full w-1/3 left-24 absolute flex flex-col justify-center items-start z-10'>
-                                <div className="text-white text-shadow w-full  font-Montserrat text-left py-1">Estreno: {element.release_date} </div>
-                                <div className="text-white text-shadow w-full text-left font-Montserrat py-1"><FontAwesomeIcon icon={faStar} className='text-yellow-400 text-shadow ' /> {element.vote_average} / 10 </div>
+                            <div className=' h-full w-1/3 left-24 absolute flex 
+                            flex-col justify-center items-start z-10'>
+
+                                <div className="text-white text-shadow w-full  
+                                font-Montserrat text-left py-1">Estreno: {element.release_date} </div>
+
+                                <div className="text-white text-shadow 
+                                w-full text-left font-Montserrat py-1">
+                                    <FontAwesomeIcon icon={faStar} className='text-yellow-400 
+                                    text-shadow ' /> {element.vote_average} / 10 </div>
                                 <div className={element.title.length > 33 ? "title large text-shadow w-full py-3" : "title extralarge text-shadow  w-full py-6"}> {element.title} </div>
+                                
                                 <button className="h-10 w-28 border-2 boder-zinc-100 
                                 font-sans font-bold text-white bg-black rounded-full 
                                 hover:bg-red-600 hover:border-0" onClick={handleDetails}
@@ -70,104 +86,207 @@ export default function Movies() {
             </Carousel>
         </div>
 
-        
+
         <div className='h-14 w-full flex items-center  border-b border-zinc-500'>
-            <p className='font-Montserrat font-extrabold text-zinc-100 absolute left-4'>Películas de la semana</p>
+            <p className='font-Montserrat font-extrabold text-zinc-100 absolute left-4'>
+                Actualmente en cines :</p>
         </div>
-        <div className='text-black  px-16 max-w-full my-0 mx-auto'>
+        <div className='text-black my-10 text-center w-[90%] mx-auto'>
             <ItemsCarousel
                 activePosition={'center'}
-                infiniteLoop={true} 
-                gutter={1}
+                infiniteLoop={true}
+                gutter={2}
                 chevronWidth={30}
                 numberOfCards={5}
-                slidesToScroll={1}
+                slidesToScroll={5}
                 outsideChevron={true}
                 activeItemIndex={activeItemIndex}
                 requestToChangeActive={setActiveItemIndex}
-                rightChevron={<button className='bg-white h-full w-8'>{'>'}</button>}
-                leftChevron={<button className='bg-white h-full w-8' >{'<'}</button>}>
-                <div className='bg-red-500 h-24 w-28 border border-black ml-14 '> HOLA</div>
-                <div className='bg-red-500 h-24 w-28 border border-black ml-14 '> HOLA 2</div>
-                <div className='bg-red-500 h-24 w-28 border border-black ml-14 '> HOLA 3</div>
-                <div className='bg-red-500 h-24 w-28 border border-black ml-14 '> HOLA 4 </div>
-                <div className='bg-red-500 h-24 w-28 border border-black ml-14 '> HOLA 5</div>
-                <div className='bg-red-500 h-24 w-28 border border-black ml-14 '> HOLA 6</div>
+                rightChevron={
+
+                    <button className='text-white bg-zinc-800 h-1/2 rounded-full 
+                border-2 border-white ml-7 hover:bg-red-500 w-8
+                hover:border-red-500 hover:border-4'>
+
+                        <FontAwesomeIcon icon={faAngleRight} className='h-2/5' />
+
+                    </button>}
+
+                leftChevron={
+                    <button className='text-white bg-zinc-800 h-1/2  
+                rounded-full border-2 w-8
+                border-white mr-7 hover:bg-red-500
+                hover:border-red-500 hover:border-4' >
+
+                        <FontAwesomeIcon icon={faAngleLeft} className='h-2/5' />
+                    </button>}
+
+            >
+                {
+                    moviePlaying.results.map(element => {
+                        return <div className='h-full rounded-xl flex flex-col overflow-hidden
+                        justify-center border-2 border-white w-4/5 mx-auto hover:border-red-500'  
+                        key={element.id} title={element.vote_average}>
+
+                            <img className='h-full cursor-pointer' src={element.url} alt={element.title} 
+                            id={element.id} onClick={handleDetails} />
+
+                            <p className='text-white text-sm font-Montserrat'>{element.title}</p>
+                        </div>
+                    })
+                }
             </ItemsCarousel>
         </div>
 
         <div className='h-14 w-full flex items-center  border-b border-zinc-500'>
-            <p className='font-Montserrat font-extrabold text-zinc-100 absolute left-4'>Películas más votadas</p>
+            <p className='font-Montserrat font-extrabold text-zinc-100 absolute left-4'>
+                Mejor valoradas :</p>
         </div>
-        <div className='text-black  px-16 max-w-full my-0 mx-auto'>
+        <div className='text-black my-10 text-center w-[90%] mx-auto'>
             <ItemsCarousel
                 activePosition={'center'}
-                infiniteLoop={true} 
-                gutter={1}
+                infiniteLoop={true}
+                gutter={2}
                 chevronWidth={30}
                 numberOfCards={5}
-                slidesToScroll={1}
+                slidesToScroll={5}
                 outsideChevron={true}
-                activeItemIndex={activeItemIndex}
-                requestToChangeActive={setActiveItemIndex}
-                rightChevron={<button className='bg-white h-full w-8'>{'>'}</button>}
-                leftChevron={<button className='bg-white h-full w-8' >{'<'}</button>}>
-                <div className='bg-red-500 h-24 w-28 border border-black ml-14 '> HOLA</div>
-                <div className='bg-red-500 h-24 w-28 border border-black ml-14 '> HOLA 2</div>
-                <div className='bg-red-500 h-24 w-28 border border-black ml-14 '> HOLA 3</div>
-                <div className='bg-red-500 h-24 w-28 border border-black ml-14 '> HOLA 4 </div>
-                <div className='bg-red-500 h-24 w-28 border border-black ml-14 '> HOLA 5</div>
-                <div className='bg-red-500 h-24 w-28 border border-black ml-14 '> HOLA 6</div>
+                activeItemIndex={activeItemIndex1}
+                requestToChangeActive={setActiveItemIndex1}
+                rightChevron={
+
+                    <button className='text-white bg-zinc-800 h-1/2 rounded-full 
+                border-2 border-white ml-7 hover:bg-red-500 w-8
+                hover:border-red-500 hover:border-4'>
+
+                        <FontAwesomeIcon icon={faAngleRight} className='h-2/5' />
+
+                    </button>}
+
+                leftChevron={
+                    <button className='text-white bg-zinc-800 h-1/2  
+                rounded-full border-2 w-8
+                border-white mr-7 hover:bg-red-500
+                hover:border-red-500 hover:border-4' >
+
+                        <FontAwesomeIcon icon={faAngleLeft} className='h-2/5' />
+                    </button>}
+
+            >
+                {
+                    movieTop.results.map(element => {
+                        return <div className='h-full rounded-xl flex flex-col overflow-hidden
+                    justify-center border-2 border-white w-4/5 mx-auto hover:border-red-500'
+                     key={element.id} title={element.vote_average}>
+
+                            <img className='h-full cursor-pointer' src={element.url} alt={element.title} 
+                            id={element.id} onClick={handleDetails} />
+
+                            <p className='text-white text-sm font-Montserrat'>{element.title}</p>
+                        </div>
+                    })
+                }
             </ItemsCarousel>
         </div>
 
         <div className='h-14 w-full flex items-center  border-b border-zinc-500'>
-            <p className='font-Montserrat font-extrabold text-zinc-100 absolute left-4'>Proximos extrenos</p>
+            <p className='font-Montserrat font-extrabold text-zinc-100 absolute left-4'>Películas actualmente en cines:</p>
         </div>
-        <div className='text-black  px-16 max-w-full my-0 mx-auto'>
+        <div className='text-black my-10 text-center w-[90%] mx-auto'>
             <ItemsCarousel
                 activePosition={'center'}
-                infiniteLoop={true} 
-                gutter={1}
+                infiniteLoop={true}
+                gutter={2}
                 chevronWidth={30}
                 numberOfCards={5}
-                slidesToScroll={1}
+                slidesToScroll={5}
                 outsideChevron={true}
-                activeItemIndex={activeItemIndex}
-                requestToChangeActive={setActiveItemIndex}
-                rightChevron={<button className='bg-white h-full w-8'>{'>'}</button>}
-                leftChevron={<button className='bg-white h-full w-8' >{'<'}</button>}>
-                <div className='bg-red-500 h-24 w-28 border border-black ml-14 '> HOLA</div>
-                <div className='bg-red-500 h-24 w-28 border border-black ml-14 '> HOLA 2</div>
-                <div className='bg-red-500 h-24 w-28 border border-black ml-14 '> HOLA 3</div>
-                <div className='bg-red-500 h-24 w-28 border border-black ml-14 '> HOLA 4 </div>
-                <div className='bg-red-500 h-24 w-28 border border-black ml-14 '> HOLA 5</div>
-                <div className='bg-red-500 h-24 w-28 border border-black ml-14 '> HOLA 6</div>
+                activeItemIndex={activeItemIndex2}
+                requestToChangeActive={setActiveItemIndex2}
+                rightChevron={
+
+                    <button className='text-white bg-zinc-800 h-1/2 rounded-full 
+                border-2 border-white ml-7 hover:bg-red-500 w-8
+                hover:border-red-500 hover:border-4'>
+
+                        <FontAwesomeIcon icon={faAngleRight} className='h-2/5' />
+
+                    </button>}
+
+                leftChevron={
+                    <button className='text-white bg-zinc-800 h-1/2  
+                rounded-full border-2 w-8
+                border-white mr-7 hover:bg-red-500
+                hover:border-red-500 hover:border-4' >
+
+                        <FontAwesomeIcon icon={faAngleLeft} className='h-2/5' />
+                    </button>}
+
+            >
+                {
+                    movieTop.results.map(element => {
+                        return <div className='h-full rounded-xl flex flex-col overflow-hidden
+                    justify-center border-2 border-white w-4/5 mx-auto hover:border-red-500' 
+                    key={element.id} title={element.vote_average}>
+
+                            <img className='h-full cursor-pointer' src={element.url} alt={element.title} 
+                            id={element.id} onClick={handleDetails} />
+
+                            <p className='text-white text-sm font-Montserrat'>{element.title}</p>
+                        </div>
+                    })
+                }
             </ItemsCarousel>
         </div>
 
         <div className='h-14 w-full flex items-center  border-b border-zinc-500'>
-            <p className='font-Montserrat font-extrabold text-zinc-100 absolute left-4'>Películas de la semana</p>
+            <p className='font-Montserrat font-extrabold text-zinc-100 absolute left-4'>Películas actualmente en cines:</p>
         </div>
-        <div className='text-black  px-16 max-w-full my-0 mx-auto'>
+        <div className='text-black my-10 text-center w-[90%] mx-auto'>
             <ItemsCarousel
                 activePosition={'center'}
-                infiniteLoop={true} 
-                gutter={1}
+                infiniteLoop={true}
+                gutter={2}
                 chevronWidth={30}
                 numberOfCards={5}
-                slidesToScroll={1}
+                slidesToScroll={5}
                 outsideChevron={true}
-                activeItemIndex={activeItemIndex}
-                requestToChangeActive={setActiveItemIndex}
-                rightChevron={<button className='bg-white h-full w-8'>{'>'}</button>}
-                leftChevron={<button className='bg-white h-full w-8' >{'<'}</button>}>
-                <div className='bg-red-500 h-24 w-28 border border-black ml-14 '> HOLA</div>
-                <div className='bg-red-500 h-24 w-28 border border-black ml-14 '> HOLA 2</div>
-                <div className='bg-red-500 h-24 w-28 border border-black ml-14 '> HOLA 3</div>
-                <div className='bg-red-500 h-24 w-28 border border-black ml-14 '> HOLA 4 </div>
-                <div className='bg-red-500 h-24 w-28 border border-black ml-14 '> HOLA 5</div>
-                <div className='bg-red-500 h-24 w-28 border border-black ml-14 '> HOLA 6</div>
+                activeItemIndex={activeItemIndex3}
+                requestToChangeActive={setActiveItemIndex3}
+                rightChevron={
+
+                    <button className='text-white bg-zinc-800 h-1/2 rounded-full 
+                border-2 border-white ml-7 hover:bg-red-500 w-8
+                hover:border-red-500 hover:border-4'>
+
+                        <FontAwesomeIcon icon={faAngleRight} className='h-2/5' />
+
+                    </button>}
+
+                leftChevron={
+                    <button className='text-white bg-zinc-800 h-1/2  
+                rounded-full border-2 w-8
+                border-white mr-7 hover:bg-red-500
+                hover:border-red-500 hover:border-4' >
+
+                        <FontAwesomeIcon icon={faAngleLeft} className='h-2/5' />
+                    </button>}
+
+            >
+                {
+                    movieTop.results.map(element => {
+                        return <div className='h-full rounded-xl flex flex-col overflow-hidden
+                    justify-center border-2 border-white w-4/5 mx-auto' key={element.id}
+                            title={element.vote_average}>
+
+
+                            <img className='h-full cursor-pointer' src={element.url} alt={element.title} 
+                            id={element.id} onClick={handleDetails} />
+
+                            <p className='text-white text-sm font-Montserrat'>{element.title}</p>
+                        </div>
+                    })
+                }
             </ItemsCarousel>
         </div>
     </div>
