@@ -4,6 +4,9 @@ import Menu from '../../components/Menu'
 import { useHandleClickAll } from '../../hooks/handleClickAll'
 import { useLocation } from 'wouter'
 
+localStorage.setItem('url',window.location.href);
+
+
 export default function SearchAll({ params }) {
     const keyword = params
     const [, pathLocation] = useLocation()
@@ -13,12 +16,13 @@ export default function SearchAll({ params }) {
         'HOME': '/', 
         'MOVIES': `/search/movie/${params.keyword}`,
         'SERIES': `/search/serie/${params.keyword}`,
-        'GAMES': ''
+        'LINEA': '',
+        'LOGIN' :'',
     }
     
     return <div id='container' className={parameter.results.length >= 6 ? 'bg-zinc-900 h-full text-white flex flex-col items-center' :
     'bg-zinc-900 h-screen text-white flex flex-col items-center' }>
-            <Menu list={list} css={"menuH"} cssArticles={"articlesH"}/>
+            <Menu list={list} orientation={'H'} />
 
             {parameter.loading === true ?
 

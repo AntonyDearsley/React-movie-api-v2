@@ -5,7 +5,6 @@ import { useHandleClickMovie } from '../../hooks/handleClickMovie'
 import E404 from '../../components/404'
 
 
-
 export default function SearchMovies({ params }) {
     const keyword = params
     const {handleClick, parameter} = useHandleClickMovie(keyword)
@@ -14,13 +13,14 @@ export default function SearchMovies({ params }) {
         'HOME': '/', 
         'MOVIES': `/search/movie/${params.keyword}`,
         'SERIES': `/search/serie/${params.keyword}`,
-        'GAMES': ''
+        'LINEA': '',
+        'LOGIN': ''
     }
 
  
     return <div id='container' className={parameter.results.length >= 6 ? 'bg-zinc-900 h-full text-white flex flex-col items-center' :
     'bg-zinc-900 h-screen text-white flex flex-col items-center' }>
-            <Menu list={list} css={"menuH"} cssArticles={"articlesH"}/>
+            <Menu list={list} orientation={'H'}/>
 
             {parameter.loading === true ?
 

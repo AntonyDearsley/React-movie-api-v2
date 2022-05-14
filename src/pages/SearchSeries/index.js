@@ -4,6 +4,7 @@ import { useHandleClickSeries } from '../../hooks/handleClickSeries'
 import Menu from '../../components/Menu'
 import E404 from '../../components/404'
 
+
 export default function SearchSeries({ params }) {
     const keyword  = params
     const {handleClick, parameter} = useHandleClickSeries(keyword)
@@ -12,18 +13,19 @@ export default function SearchSeries({ params }) {
         'HOME': '/', 
         'MOVIES': `/search/movie/${params.keyword}`,
         'SERIES': `/search/serie/${params.keyword}`,
-        'GAMES': ''
+        'LINEA': '',
+        'LOGIN': ''
     }
     
 
     return <div id='container' className={parameter.results.length >= 6 ? 'bg-zinc-900 h-full text-white flex flex-col items-center' :
     'bg-zinc-900 h-screen text-white flex flex-col items-center' }>
-            <Menu list={list} css={"menuH"} cssArticles={"articlesH"}/>
+            <Menu list={list} orientation={'H'}/>
 
             {parameter.loading === true ?
 
                 <div className='container flex justify-center h-screen items-center'>
-                    <span class="loader" />
+                    <span className="loader" />
                 </div>  
         
             : parameter.results.length === 0 ? 

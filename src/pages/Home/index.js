@@ -12,7 +12,8 @@ const list = {
   'HOME': '/',
   'MOVIES': '/movie',
   'SERIES': '/serie',
-  'GAMES': '/game'
+  'LINEA': '',
+  'LOGIN': '/game'
 }
 
 export default function Home() {
@@ -40,7 +41,7 @@ export default function Home() {
   }
 
   return <div id='container' className='home'>
-    <Menu list={list} css={"menuV"} cssArticles={"articlesV"} />
+    <Menu list={list} orientation={'V'} />
     <div className='h-screen sm:w-screen flex flex-col items-center'>
      
       <div className='w-11/12 bg-white my-10'>       
