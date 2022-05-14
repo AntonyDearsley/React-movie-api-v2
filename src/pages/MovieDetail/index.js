@@ -4,22 +4,21 @@ import { faLongArrowAltLeft } from '@fortawesome/fontawesome-free-solid'
 import { faHeart as faHeartRegular, faListAlt } from '@fortawesome/fontawesome-free-regular'
 import { faHeart as faHeartSolid } from '@fortawesome/fontawesome-free-solid'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useLocation } from 'wouter'
 import { useMovieVideo } from '../../hooks/useMovieVideo'
 import { Carousel } from 'react-responsive-carousel';
 import { useMovieCredits } from '../../hooks/useMovieCredits'
 import "./index.css"
 
+
 export default function MovieDetail({ params }) {
     const { id } = params
     const parameter = useMovieDetail(id)
     const results = useMovieVideo(id)
-    const [, pathLocation] = useLocation()
     const [enable, setEnable] = useState(false)
     const actors = useMovieCredits(id)
 
     const handleClick = () => {
-        pathLocation('/')
+        window.history.back()
     }
 
     const heartClick = () => {
@@ -40,7 +39,7 @@ export default function MovieDetail({ params }) {
             <div className='w-10 flex items-center text-zinc-100 hover:cursor-pointer'
                 onClick={handleClick}>
                 <FontAwesomeIcon icon={faLongArrowAltLeft} className='h-10 mx-2' />
-                <p>HOME</p>
+                <p>ATRAS</p>
             </div>
         </section>
 

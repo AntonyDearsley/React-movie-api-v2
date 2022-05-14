@@ -10,16 +10,16 @@ import "../MovieDetail/index.css"
 import { useSerieCredits } from '../../hooks/useSerieCredits'
 import { Carousel } from 'react-responsive-carousel';
 
+
 export default function SerieDetail({ params }) {
     const { id } = params
     const parameter = useSerieDetail(id)
     const results = useSerieVideo(id)
-    const [,pathLocation] = useLocation()
     const [enable, setEnable] = useState(false)
     const actors = useSerieCredits(id)
 
     const handleClick = ()=> {
-        pathLocation('/')
+        window.history.back()
     }
 
     const heartClick = () => {
@@ -37,7 +37,7 @@ export default function SerieDetail({ params }) {
             <div className='w-10 flex items-center text-zinc-100 hover:cursor-pointer'
             onClick={handleClick}>
                 <FontAwesomeIcon icon={faLongArrowAltLeft} className='h-10 mx-2' />
-                <p>HOME</p>
+                <p>ATRAS</p>
             </div>
         </section>
 
