@@ -10,6 +10,8 @@ import './index.css'
 import ItemsCarousel from 'react-items-carousel';
 import { useMoviePlaying } from '../../hooks/useMoviePlaying';
 import { useMovieTop } from '../../hooks/useMovieTop'
+import { useMovieComing } from '../../hooks/useMovieComing'
+
 
 
 
@@ -17,11 +19,12 @@ export default function Movies() {
     const [, pushLocation] = useLocation()
     const moviePopular = useMoviePopular()
     const moviePlaying = useMoviePlaying()
+    const movieComing = useMovieComing()
     const movieTop = useMovieTop()
     const [activeItemIndex, setActiveItemIndex] = useState(0)
     const [activeItemIndex1, setActiveItemIndex1] = useState(0)
     const [activeItemIndex2, setActiveItemIndex2] = useState(0)
-    const [activeItemIndex3, setActiveItemIndex3] = useState(0)
+
 
     const handleClick = () => {
         window.history.back()
@@ -190,7 +193,8 @@ export default function Movies() {
         </div>
 
         <div className='h-14 w-full flex items-center  border-b border-zinc-500'>
-            <p className='font-Montserrat font-extrabold text-zinc-100 absolute left-4'>Películas actualmente en cines:</p>
+            <p className='font-Montserrat font-extrabold text-zinc-100 absolute left-4'>
+                Próximamente :</p>
         </div>
         <div className='text-black my-10 text-center w-[90%] mx-auto'>
             <ItemsCarousel
@@ -224,61 +228,10 @@ export default function Movies() {
 
             >
                 {
-                    movieTop.results.map(element => {
+                    movieComing.results.map(element => {
                         return <div className='h-full rounded-xl flex flex-col overflow-hidden
                     justify-center border-2 border-white w-4/5 mx-auto hover:border-red-500' 
                     key={element.id} title={element.vote_average}>
-
-                            <img className='h-full cursor-pointer' src={element.url} alt={element.title} 
-                            id={element.id} onClick={handleDetails} />
-
-                            <p className='text-white text-sm font-Montserrat'>{element.title}</p>
-                        </div>
-                    })
-                }
-            </ItemsCarousel>
-        </div>
-
-        <div className='h-14 w-full flex items-center  border-b border-zinc-500'>
-            <p className='font-Montserrat font-extrabold text-zinc-100 absolute left-4'>Películas actualmente en cines:</p>
-        </div>
-        <div className='text-black my-10 text-center w-[90%] mx-auto'>
-            <ItemsCarousel
-                activePosition={'center'}
-                infiniteLoop={true}
-                gutter={2}
-                chevronWidth={30}
-                numberOfCards={5}
-                slidesToScroll={5}
-                outsideChevron={true}
-                activeItemIndex={activeItemIndex3}
-                requestToChangeActive={setActiveItemIndex3}
-                rightChevron={
-
-                    <button className='text-white bg-zinc-800 h-1/2 rounded-full 
-                border-2 border-white ml-7 hover:bg-red-500 w-8
-                hover:border-red-500 hover:border-4'>
-
-                        <FontAwesomeIcon icon={faAngleRight} className='h-2/5' />
-
-                    </button>}
-
-                leftChevron={
-                    <button className='text-white bg-zinc-800 h-1/2  
-                rounded-full border-2 w-8
-                border-white mr-7 hover:bg-red-500
-                hover:border-red-500 hover:border-4' >
-
-                        <FontAwesomeIcon icon={faAngleLeft} className='h-2/5' />
-                    </button>}
-
-            >
-                {
-                    movieTop.results.map(element => {
-                        return <div className='h-full rounded-xl flex flex-col overflow-hidden
-                    justify-center border-2 border-white w-4/5 mx-auto' key={element.id}
-                            title={element.vote_average}>
-
 
                             <img className='h-full cursor-pointer' src={element.url} alt={element.title} 
                             id={element.id} onClick={handleDetails} />
