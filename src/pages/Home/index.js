@@ -12,8 +12,8 @@ const list = {
   'HOME': '/',
   'MOVIES': '/movie',
   'SERIES': '/serie',
-  'LINEA': '',
-  'LOGIN': '/game'
+  'LINEA': '/',
+  'LOGIN': '/login'
 }
 
 export default function Home() {
