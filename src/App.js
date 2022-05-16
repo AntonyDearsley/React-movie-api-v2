@@ -7,10 +7,10 @@ import SearchSeries from './pages/SearchSeries';
 import Error404 from './pages/404'
 import Movies from './pages/Movies';
 import Series from './pages/Series';
-import Games from './pages/Games';
 import SearchAll from './pages/SearchAll';
 import MovieDetail from './pages/MovieDetail';
 import SerieDetail from './pages/SerieDetail';
+import Login from './pages/Login';
 
 
 export default function App() {
@@ -30,10 +30,10 @@ export default function App() {
           path="/serie"
       />  
 
-      <Route
-          component={Games}
-          path="/game"
-      />  
+      <Route 
+          component={Login}
+          path="/login"
+        />
 
       <Route
         component={SearchAll}
