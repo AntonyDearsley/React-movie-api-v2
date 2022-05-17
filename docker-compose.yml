@@ -1,11 +1,11 @@
 version: '3.8'
 
-#networks:
-networks:
-  web:
-    external: true
-  internal:
-    external: false
+# #networks:
+# networks:
+#   web:
+#     external: true
+#   internal:
+#     external: false
 
 # Services
 services:
@@ -24,40 +24,40 @@ services:
   api:
     build:
       dockerfile: Dockerfile
-      context: "./server/.docker"
+      context: "./server"
     ports:
       - 3001:80                                   
     volumes:
       - /app/node_modules
-      - ./server/.docker:/app
-    labels:
-      - traefik.http.routers.apiraul.rule=Host(`api.raul.labfp.es`)
-      - traefik.http.routers.apiraul.tls=true
-      - traefik.http.routers.apiraul.tls.certresolver=lets-encrypt
-      - traefik.port=9090'
-    networks:
-      - internal
-      - web
+      - ./server:/app
+    # labels:
+    #   - traefik.http.routers.apiraul.rule=Host(`api.raul.labfp.es`)
+    #   - traefik.http.routers.apiraul.tls=true
+    #   - traefik.http.routers.apiraul.tls.certresolver=lets-encrypt
+    #   - traefik.port=3001'
+    # networks:
+    #   - internal
+    #   - web
     depends_on:
       - mysql
 
   client:
     build:
       dockerfile: Dockerfile
-      context: ./client/.docker
+      context: ./client
     ports:
       - 3000:80
     volumes:
       - /app/node_modules
-      - ./client/.docker:/app
-    labels:
-      - traefik.http.routers.raul.rule=Host(`raul.labfp.es`)
-      - traefik.http.routers.raul.tls=true
-      - traefik.http.routers.raul.tls.certresolver=lets-encrypt
-      - traefik.port=8030
-    networks:
-      - internal
-      - web
+      - ./client:/app
+    # labels:
+    #   - traefik.http.routers.raul.rule=Host(`raul.labfp.es`)
+    #   - traefik.http.routers.raul.tls=true
+    #   - traefik.http.routers.raul.tls.certresolver=lets-encrypt
+    #   - traefik.port=3000
+    # networks:
+    #   - internal
+    #   - web
 
   # MySQL Service
   mysql:
@@ -65,13 +65,13 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_ROOT_HOST: "%"
-      MYSQL_DATABASE: example
+      MYSQL_DATABASE: books
       MYSQL_USER: root
     volumes:
       - ./.docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
       - mysqldata:/var/lib/mysql
-    networks:
-      - internal
+    # networks:
+    #   - internal
     healthcheck:
       test: mysqladmin ping -h 127.0.0.1 -u root --password=$$MYSQL_ROOT_PASSWORD
       interval: 5s
@@ -80,18 +80,18 @@ services:
 # PhpMyAdmin Service
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:5
-    labels:
-      - traefik.http.routers.dbraul.rule=Host(`db.raul.labfp.es`)
-      - traefik.http.routers.dbraul.tls=true
-      - traefik.http.routers.dbraul.tls.certresolver=lets-encrypt
-      - traefik.port=8080
+    # labels:
+    #   - traefik.http.routers.dbraul.rule=Host(`db.raul.labfp.es`)
+    #   - traefik.http.routers.dbraul.tls=true
+    #   - traefik.http.routers.dbraul.tls.certresolver=lets-encrypt
+    #   - traefik.port=8080
     ports:
       - 8080:80
     environment:
       PMA_HOST: mysql
-    networks:
-      - internal
-      - web
+    # networks:
+    #   - internal
+    #   - web
     depends_on:
       - mysql
 # Volumes

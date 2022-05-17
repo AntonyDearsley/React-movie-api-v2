@@ -8,8 +8,6 @@ export default function Article({ children , url, cssArticles, orientation }) {
     pathLocation(url)
   }
   
-  console.log(orientation)
-  
 
   return <div key={url} className={
     children === 'LINEA' && orientation === 'V' ? 'lineaV' 
