@@ -23,6 +23,13 @@ app.get('/', (req, res) => {
   res.send('Hi There')
 });
 
+// example page
+app.get('/example', (req, res) => {
+  res.send('example')
+});
+3
+
+
 // get all of the books in the database
 app.get('/get', (req, res) => {
   const SelectQuery = " SELECT * FROM  books_reviews";
