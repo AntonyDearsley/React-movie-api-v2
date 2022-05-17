@@ -9,7 +9,6 @@ version: '3.8'
 
 # Services
 services:
-
   nginx:
     depends_on:
       - api
@@ -19,12 +18,12 @@ services:
       dockerfile: Dockerfile
       context: ./.docker/nginx
     ports:
-      - "9000:80"
+      - 80:80
 
   api:
     build:
       dockerfile: Dockerfile
-      context: "./server"
+      context: ./server
     ports:
       - 3001:80                                   
     volumes:
