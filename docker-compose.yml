@@ -1,48 +1,64 @@
 version: '3.8'
 
-#networks:
-networks:
-  web:
-    external: true
-  internal:
-    external: false
+# #networks:
+# networks:
+#   web:
+#     external: true
+#   internal:
+#     external: false
+
 
 # Services
 services:
-  expressapp:
-    container_name: expressapp
-    build: ./Server
-    expose:
-      - 8000
-    labels:
-      - traefik.http.routers.dbraul.rule=Host(`api.antony.labfp.es`)
-      - traefik.http.routers.dbraul.tls=true
-      - traefik.http.routers.dbraul.tls.certresolver=lets-encrypt
-      - traefik.port=8000
-    volumes:
-      - ./Server:/usr/src/app
-
-  reactapp:
-    container_name: reactapp
-    build: ./Client
-    expose:
-      - 5000
-    labels:
-      - traefik.http.routers.dbraul.rule=Host(`antony.labfp.es`)
-      - traefik.http.routers.dbraul.tls=true
-      - traefik.http.routers.dbraul.tls.certresolver=lets-encrypt
-      - traefik.port=5000  
-    volumes:
-      - ./Client:/usr/src/app
 
   nginx:
-    build: ./nginx
-    expose:
-      - 80
-    links:
-      - expressapp
-      - reactapp
+    depends_on:
+      - api
+      - client
     restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./.docker/nginx
+    ports:
+      - 80:80
+
+  api:
+    build:
+      dockerfile: Dockerfile
+      context: ./Server
+    ports:
+      - 3001:80                                   
+    volumes:
+      - /app/node_modules
+      - ./Server:/app
+    # labels:
+    #   - traefik.http.routers.apiraul.rule=Host(`api.raul.labfp.es`)
+    #   - traefik.http.routers.apiraul.tls=true
+    #   - traefik.http.routers.apiraul.tls.certresolver=lets-encrypt
+    #   - traefik.port=3001'
+    # networks:
+    #   - internal
+    #   - web
+    depends_on:
+      - mysql
+
+  client:
+    build:
+      dockerfile: Dockerfile
+      context: ./Client
+    ports:
+      - 3000:80
+    volumes:
+      - /app/node_modules
+      - ./Client:/app
+    # labels:
+    #   - traefik.http.routers.raul.rule=Host(`raul.labfp.es`)
+    #   - traefik.http.routers.raul.tls=true
+    #   - traefik.http.routers.raul.tls.certresolver=lets-encrypt
+    #   - traefik.port=3000
+    # networks:
+    #   - internal
+    #   - web
 
   # MySQL Service
   mysql:
@@ -62,24 +78,25 @@ services:
       interval: 5s
       retries: 10
 
+
 # PhpMyAdmin Service
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:5
-    labels:
-      - traefik.http.routers.dbraul.rule=Host(`db.raul.labfp.es`)
-      - traefik.http.routers.dbraul.tls=true
-      - traefik.http.routers.dbraul.tls.certresolver=lets-encrypt
-      - traefik.port=8080
+    # labels:
+    #   - traefik.http.routers.dbraul.rule=Host(`db.raul.labfp.es`)
+    #   - traefik.http.routers.dbraul.tls=true
+    #   - traefik.http.routers.dbraul.tls.certresolver=lets-encrypt
+    #   - traefik.port=8080
     ports:
       - 8080:80
     environment:
       PMA_HOST: mysql
-    networks:
-      - internal
-      - web
+    # networks:
+    #   - internal
+    #   - web
     depends_on:
       - mysql
+
 # Volumes
 volumes:
-
   mysqldata:
