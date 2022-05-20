@@ -38,6 +38,29 @@ app.get('/get/allUsers', (req, res) => {
   })
 })
 
+// get all of one user in the database
+app.get('/get/user/name=:name', (req, res) => {
+  const name = req.params.name;
+  const SelectQuery = "SELECT * FROM USUARIOS WHERE NOMBRE = ?";
+  db.query(SelectQuery, name ,(err, result) => {
+    if (err) res.send(err)
+    else res.send(result)
+  })
+})
+
+// get all of one user in the database
+app.get('/get/user/email=:email', (req, res) => {
+  const email = req.params.email;
+  const SelectQuery = "SELECT * FROM USUARIOS WHERE CORREO = ?";
+  db.query(SelectQuery, email ,(err, result) => {
+    if (err) res.send(err)
+    else res.send(result)
+  })
+})
+
+
+
+
 // add a user to the database
 app.get("/insert/user/:name/:email/:password", (req, res) => {
   // const bookName = req.body.setBookName;
