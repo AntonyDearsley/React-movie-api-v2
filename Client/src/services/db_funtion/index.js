@@ -1,4 +1,4 @@
-const apiURL = 'http://www.themobee.com/api/';
+const apiURL = 'http://antony.labfp.es/api/';
 
 export async function getUser(param, password) {
     const sentenceName = apiURL + `get/user/name=${param}`
