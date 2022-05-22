@@ -8,6 +8,8 @@ import "./index.css";
 export default function Login() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [password2, setPassword2] = useState("")
+    const [email, setEmail] = useState("")
 
     
     const handleClick = () => {
@@ -16,12 +18,19 @@ export default function Login() {
 
     const handleSubmit = e => {
         e.preventDefault()
-        
-        let result = db.getUser(username, password)
 
-        result.then(async response => {
-            response === 'true' ? alert('A iniciado session') : alert('algo falla')
-        })
+        const params = { username , email , password, password2 }
+
+        const validate = db.validateRegister(params)
+
+        if (validate.res) {
+            
+            db.insertUser(params).then(response => {
+                response === 'true' ? alert('El Usuario ha sido creado con éxito')
+                : alert('El usuario o correo eléctronico ya esta en uso')  
+            })
+           
+        } else alert(validate.message)
     }
 
     return <div className='h-screen flex flex-col bg-zinc-900 border-8 border-green-400'>
@@ -45,7 +54,7 @@ export default function Login() {
                     </div>
 
                     <div className='mb-4 flex flex-col'>
-                        <TextField label="Correo"id="standard-basic" variant="standard" />
+                        <TextField label="Correo"id="standard-basic" variant="standard" value={email} onChange={e => setEmail(e.target.value)}/>
                     </div>
 
                     <div className='mb-4 flex flex-col'>
@@ -53,7 +62,7 @@ export default function Login() {
                     </div>
 
                     <div className='mb-4 flex flex-col'>
-                        <TextField label="Confirmar contraseña"id="standard-basic" variant="standard" />
+                        <TextField label="Confirmar contraseña"id="standard-basic" variant="standard" value={password2} onChange={e => setPassword2(e.target.value)} />
                     </div>
 
                     <div className='w-full '>
