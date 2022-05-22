@@ -11,6 +11,7 @@ import SearchAll from './pages/SearchAll';
 import MovieDetail from './pages/MovieDetail';
 import SerieDetail from './pages/SerieDetail';
 import Login from './pages/Login';
+import SignUp from './pages/Signup';
 
 
 export default function App() {
@@ -33,6 +34,11 @@ export default function App() {
       <Route 
           component={Login}
           path="/login"
+        />
+
+      <Route 
+          component={SignUp}
+          path="/Signup"
         />
 
       <Route
