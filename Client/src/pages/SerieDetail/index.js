@@ -1,43 +1,53 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useSerieDetail } from '../../hooks/useSerieDetail'
-import { faLongArrowAltLeft } from '@fortawesome/fontawesome-free-solid'
+import { faLongArrowAltLeft, faUser } from '@fortawesome/fontawesome-free-solid'
 import { faHeart as faHeartRegular, faListAlt } from '@fortawesome/fontawesome-free-regular'
 import { faHeart as faHeartSolid } from '@fortawesome/fontawesome-free-solid'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useLocation } from 'wouter'
 import { useSerieVideo } from '../../hooks/useSerieVideo'
 import "../MovieDetail/index.css"
+import * as db from '../../services/db_funtion';
 import { useSerieCredits } from '../../hooks/useSerieCredits'
 import { Carousel } from 'react-responsive-carousel';
+import { useEnableHeart } from '../../hooks/useEnableHeart'
 
 
 export default function SerieDetail({ params }) {
     const { id } = params
     const parameter = useSerieDetail(id)
     const results = useSerieVideo(id)
-    const [enable, setEnable] = useState(false)
+    const {stage, setStage} = useEnableHeart({ type: "S", id_multi: id, id_user: 1 })
     const actors = useSerieCredits(id)
 
-    const handleClick = ()=> {
+    const handleClick = () => {
         window.history.back()
     }
 
     const heartClick = () => {
-        setEnable(!enable)
-    }
+        const { title } = parameter
+        !stage.value ? db.insertFav({ title: title, type: "S", id_multi: id, id_user: 1 }) 
+        : db.deletetFav({ type: "S", id_multi: id, id_user: 1 })
 
+        setStage(!stage.value)
+    }
+    
     const listClick = () => {
-        alert("añadido a tu Lista")
+        alert("La serie ha sido añadida a tu Lista")
     }
-
 
     return <section className='h-screen  flex flex-col font-Montserrat'>
 
-        <section className='w-full h-12 flex items-center pl-6 bg-zinc-900'>
+        <section className='w-full h-12 flex justify-between items-center px-6 bg-zinc-900'>
             <div className='w-10 flex items-center text-zinc-100 hover:cursor-pointer'
             onClick={handleClick}>
                 <FontAwesomeIcon icon={faLongArrowAltLeft} className='h-10 mx-2' />
                 <p>ATRAS</p>
+            </div>
+
+            <div className='mx-14 w-10 flex items-center text-zinc-100 hover:cursor-pointer'
+            onClick={handleClick}>
+                <p>LOGIN</p>
+                <FontAwesomeIcon icon={faUser} className='h-8 mx-2' />       
             </div>
         </section>
 
@@ -88,10 +98,23 @@ export default function SerieDetail({ params }) {
                     <div>
                         <p>PUNTUACION Y FAVORITO</p>
                     </div>
-                    <div className='flex justify-center w-full'>
-                        <FontAwesomeIcon icon={enable === true ? faHeartSolid : faHeartRegular}
-                            onClick={heartClick} className={enable === true ?
-                            'icon-selected' : 'icon-unselected' } />
+                     <div className='flex justify-center w-full'>
+
+
+
+                        {
+                            stage.loading ? <div className='container flex justify-center items-center h-1/2 '>
+                            <span className="loader  " />
+                            </div>
+                            :
+                             <FontAwesomeIcon icon={ stage.value === true ? faHeartSolid : faHeartRegular} 
+                                onClick={heartClick} className={stage.value === true ?
+                                'icon-selected' : 'icon-unselected' } />
+
+                        }
+
+                        
+                        
 
                         <FontAwesomeIcon icon={faListAlt}
                             onClick={listClick} className='h-10 text-zinc-100 hover:cursor-pointer mx-4' />
