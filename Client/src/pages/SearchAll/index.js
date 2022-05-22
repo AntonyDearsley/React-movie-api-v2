@@ -15,9 +15,7 @@ export default function SearchAll({ params }) {
     const list = {
         'HOME': '/', 
         'MOVIES': `/search/movie/${params.keyword}`,
-        'SERIES': `/search/serie/${params.keyword}`,
-        'LINEA': '',
-        'LOGIN' :'',
+        'SERIES': `/search/serie/${params.keyword}`
     }
     
     return <div id='container' className={parameter.results.length >= 6 ? 'bg-zinc-900 h-full text-white flex flex-col items-center' :

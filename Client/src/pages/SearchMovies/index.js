@@ -12,9 +12,7 @@ export default function SearchMovies({ params }) {
     const list = {
         'HOME': '/', 
         'MOVIES': `/search/movie/${params.keyword}`,
-        'SERIES': `/search/serie/${params.keyword}`,
-        'LINEA': '',
-        'LOGIN': ''
+        'SERIES': `/search/serie/${params.keyword}`
     }
 
  

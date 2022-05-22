@@ -13,8 +13,6 @@ export default function SearchSeries({ params }) {
         'HOME': '/', 
         'MOVIES': `/search/movie/${params.keyword}`,
         'SERIES': `/search/serie/${params.keyword}`,
-        'LINEA': '',
-        'LOGIN': ''
     }
     
 
