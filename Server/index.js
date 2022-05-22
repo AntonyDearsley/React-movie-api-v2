@@ -31,8 +31,8 @@ app.get('/get/allUsers', (req, res) => {
 app.post('/get/user/name', (req, res) => {
   const name = req.body.name;
   const SelectQuery = "SELECT * FROM USUARIOS WHERE NOMBRE = ?";
-  db.query(SelectQuery, name ,(err, result) => {
-    if (err) res.status(400).send('BAD REQUEST')
+  db.query(SelectQuery, name,(err, result) => {
+    if (err) res.status(400).send('ERROR: ' + err + ' RESULT: ' + result)
     else res.send(result)
   })
 })
@@ -41,7 +41,7 @@ app.post('/get/user/name', (req, res) => {
 app.post('/get/user/email', (req, res) => {
   const email = req.body.email;
   const SelectQuery = "SELECT * FROM USUARIOS WHERE CORREO = ?";
-  db.query(SelectQuery, email ,(err, result) => {
+  db.query(SelectQuery, email,(err, result) => {
     if (err) res.status(400).send('BAD REQUEST')
     else res.send(result)
   })
