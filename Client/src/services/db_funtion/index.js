@@ -1,39 +1,49 @@
 const apiURL = 'http://antony.labfp.es/api/';
 
-export async function getUser(param, password) {
-    const sentenceName = apiURL + `get/user/name=${param}`
-    const sentenceEmail = apiURL + `get/user/email=${param}`
+export async function getUser(user, password) {
+    const sentenceName = apiURL + `get/user/name`
+    const sentenceEmail = apiURL + `get/user/email`
 
-    if (param.includes('@')) {
+ 
 
-        const response = fetch(sentenceEmail)
-            .then(res => res.json())
+    if (user.includes('@')) {
+
+        const response = fetch(sentenceEmail, {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({email: user})
+        }).then(res => res.json())
             .then(response => {
-                let result;
+                let result = "";
                 response.length > 0 ?
                     result = response
                     : result = [{ ID: '', NOMBRE: '', CORREO: '', CONTRASENA: '' }]
                 return result
             })
 
-        return response.then(async response => {
-            if (response[0].CORREO === param){
+     
+
+        return response.then(response => {
+            if (response[0].CORREO === user) {
                 if (response[0].CONTRASENA === password) {
-                    return 'true'
+                    return { value: 'true', message: 'todo va bien' }
                 } else {
-                    return 'false'
+                    return { value: 'false', message: 'No coincide la contraseña' }
                 }
             } else {
-                return 'false'
+                return { value: 'false', message: 'El correo no exite' }
             }
-                
         })
 
     } else {
 
-        const response = fetch(sentenceName)
-            .then(res => res.json())
+        const response = fetch(sentenceName, {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({name: user})
+        }).then(res => res.json())
             .then(response => {
+           
                 let result;
                 response.length > 0 ?
                     result = response
@@ -41,16 +51,17 @@ export async function getUser(param, password) {
                 return result
             })
 
-        return response.then(async response => {
-            if (response[0].NOMBRE === param){
+
+        return response.then(response => {
+            if (response[0].NOMBRE === user) {
                 if (response[0].CONTRASENA === password) {
-                    return 'true'
+                    return { value: 'true', message: 'todo va bien' }
                 } else {
-                    return 'false'
+                    return { value: 'false', message: 'No coincide la contraseña' }
                 }
             } else {
-                return 'false'
-            }               
+                return { value: 'false', message: 'El nombre de usuario no existe' }
+            }
         })
     }
 }
@@ -61,22 +72,22 @@ export function validateRegister(params) {
     const password = params.password
     const password2 = params.password2
 
-    if(username.length < 1 && 
+    if (username.length < 1 &&
         email.length < 1 &&
-         password.length < 1 &&
-          password2.length < 1) {
-        return {res: false , message: 'Los contenedores no pueden estar vacio.'}
+        password.length < 1 &&
+        password2.length < 1) {
+        return { value: false, message: 'Los contenedores no pueden estar vacio.' }
     } else if (username.includes('@')) {
-        return {res: false , message: 'El usuario no debe contener el caracter: @'}
+        return { value: false, message: 'El usuario no debe contener el caracter: @' }
     } else if (!email.includes('@') || email < 5) {
-        return {res: false , message: 'El email no es valido.' }
+        return { value: false, message: 'El email no es valido.' }
     } else if (password !== password2) {
-        return {res: false , message: 'Las contraseñas no coinciden.'}
+        return { value: false, message: 'Las contraseñas no coinciden.' }
     } else if (password < 8) {
-        return {res: false , message: 'Las contraseña no puede ser menor de 8 caracteres.'}
+        return { value: false, message: 'Las contraseña no puede ser menor de 8 caracteres.' }
     }
     else {
-        return {res: true , message: 'OK'}
+        return { value: true, message: 'OK' }
     }
 
 }
@@ -121,17 +132,16 @@ export async function deletetFav(params) {
 
 export async function searchMultimediaFav(params) {
     const sentence = apiURL + `search/fav/multimedia`
-    
+
     return fetch(sentence, {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(params)
     })
-    .then(res => res.json())
-    .then(response => {
-        console.log(response)
-        return response.length > 0 ? true : false
-    })
+        .then(res => res.json())
+        .then(response => {
+            return response.length > 0 ? true : false
+        })
 }
 
 
