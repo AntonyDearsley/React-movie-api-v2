@@ -22,7 +22,7 @@
 | 22/03/22 | 3     | Trabajando ApiRest con Slim y archivos Json       | Configuración de slim                | Consultar profesorado e internet         |
 | 23/03/22 | 6     | Peticiones a la base de datos con Slim            | Insertar datos con JQ y PHP          | Ninguna aun                              |
 | 24/03/22 | 9     | Generando frontend y peticiones                   | Ninguna                              | Nada                                     |
-| 25/03/22 | 3     | Creando Modals y subiendo trabajo a host virutal  | El funcionamiento del host           | Ninguna aun     
+| 25/03/22 | 3     | Creando Modals y subiendo trabajo a host virutal  | El funcionamiento del host           | Ninguna aun                              |
 
                          |
 
@@ -80,3 +80,36 @@ Elaboración de actividad describiendo el horario, creación de clave pública p
         <td>Seguir tutorial creación de clave pública</td>
     </tr>
 </table>
+
+
+# Horario de trabajo sobre TFG Conjunto
+
+| Fecha    | Horas | Tareas                                            | Dificultades                         | Soluciones                               |
+| -------- | ----- | ------------------------------------------------- | -------------------------------------| ---------------------------------------- |
+| 13/04/22 | 7     | Practicar frontend con tailwind y less            | Creación de componentes              | Nada                                     |
+| 14/04/22 | 7     | Aprendizaje de framework frontend React           | Ninguna                              | Nada                                     |
+| 15/04/22 | 11    | Practicas de proyectos de React                   | Ninguna                              | Nada                                     |
+| 19/04/22 | 14    | Estudiar framework React                          | Framework nuevo                      | Ver tutoriales en youtube                |
+| 21/04/22 | 7     | Comienzo de proyecto con React y una API          | Ninguna                              | Nada                                     |
+| 22/04/22 | 7     | Refactorización del proyecto                      | Ninguna                              | Nada                                     |
+| 25/04/22 | 7     | Practicas y estudios sobre api Wouter             | Ninguna                              | Nada                                     |
+| 26/04/22 | 7     | Cambio de API a OMDb y creación de componentes    | Ninguna                              | Nada                                     |
+| 27/04/22 | 7     | Creando funcionalidad de Series y Películas       | Ninguna                              | Nada                                     |
+| 28/04/22 | 7     | Añadiendo pagina de Error y funcionalidades       | Ninguna                              | Nada                                     |
+| 29/04/22 | 7     | Creando rutas para menú y añadiendo Css e iconos  | Ninguna                              | Nada                                     |
+| 02/05/22 | 7     | Cambiando la API a una más completa TMDB y creacion de carga | Ninguna                   | Nada                                     |
+| 03/05/22 | 7     | Creación de páginas, servicios y detalles         | Ninguna                              | Nada                                     |
+| 04/05/22 | 7     | Creacion de componente de carga y refactoricazión | Ninguna                              | Nada                                     |
+| 05/05/22 | 7     | Limpieza de código y añadiendo carusel con servicio | Ninguna                            | Nada                                     |
+| 06/05/22 | 7     | Refactorización de servicios y paginas            | Ninguna                              | Nada                                     |
+| 09/05/22 | 7     | Creacion de detalles y componente youtube         | Ninguna                              | Nada                                     |
+| 10/05/22 | 7     | Creacion de servicios de actores y refactorización | Ninguna                             | Nada                                     |
+| 11/05/22 | 7     | Refactorizacion de css                            | Ninguna                              | Nada                                     |
+| 14/05/22 | 7     | Refactorización de codigo                         | Ninguna                              | Nada                                     |
+| 15/05/22 | 7     | Creación de página Movie                          | Ninguna                              | Nada                                     |
+| 16/05/22 | 7     | Creación de página Serie                          | Ninguna                              | Nada                                     |
+| 17/05/22 | 7     | Dockerizando la aplicación                        | Problemas con traefick               | Ayuda del profesorado                    |
+| 18/05/22 | 7     | Creando esquema sql y configurazión de database   | Ninguna                              | Nada                                     |
+| 19/05/22 | 7     | Refactorizando docker files                       | Ninguna                              | Nada                                     |
+| 20/05/22 | 16    | Agregando funciones conjunto a la base de datos   | Ninguna                              | Nada                                     |
+
