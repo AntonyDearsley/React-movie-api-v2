@@ -6,7 +6,6 @@ import { useLocation } from 'wouter'
 import { Carousel } from 'react-responsive-carousel';
 import { useMoviePopular } from '../../hooks/useMoviePopular';
 import './index.css'
-
 import ItemsCarousel from 'react-items-carousel';
 import { useMoviePlaying } from '../../hooks/useMoviePlaying';
 import { useMovieTop } from '../../hooks/useMovieTop'
