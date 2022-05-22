@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useMovieDetail } from '../../hooks/useMovieDetail'
-import { faLongArrowAltLeft } from '@fortawesome/fontawesome-free-solid'
+import { faLongArrowAltLeft, faUser } from '@fortawesome/fontawesome-free-solid'
 import { faHeart as faHeartRegular, faListAlt } from '@fortawesome/fontawesome-free-regular'
 import { faHeart as faHeartSolid } from '@fortawesome/fontawesome-free-solid'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -32,7 +32,7 @@ export default function MovieDetail({ params }) {
     }
     
     const listClick = () => {
-        alert("añadido a tu Lista")
+        alert("La película ha sido añadida a tu Lista")
     }
 
 
@@ -41,11 +41,17 @@ export default function MovieDetail({ params }) {
         <div className='h-full object-cover w-full -z-[9] bg-black/80 absolute'></div>
             <img src={parameter.backdropurl} className="w-full -z-10 absolute h-full" alt="" />
 
-        <section className='w-full h-12 flex items-center pl-6 bg-zinc-900 '>
+        <section className='w-full h-12 flex justify-between items-center px-6 bg-zinc-900 '>
             <div className='w-10 flex items-center text-zinc-100 hover:cursor-pointer'
                 onClick={handleClick}>
                 <FontAwesomeIcon icon={faLongArrowAltLeft} className='h-10 mx-2' />
                 <p>ATRAS</p>
+            </div>
+
+            <div className='mx-14 w-10 flex items-center text-zinc-100 hover:cursor-pointer'
+            onClick={handleClick}>
+                <p>LOGIN</p>
+                <FontAwesomeIcon icon={faUser} className='h-8 mx-2' />       
             </div>
         </section>
 
