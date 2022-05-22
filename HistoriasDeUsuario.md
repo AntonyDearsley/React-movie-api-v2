@@ -290,23 +290,6 @@
     </li>
 </ul>
 
-### Historia de usuario - Ver detalles de los contenidos 
-
-<p>
-    <strong>COMO</strong> usuario <strong>QUIERO</strong> ver los detalles de los contenidos <strong>PARA</strong> obtener más información sobre el contenido.
-</p>
-
-<ul>
-    <li>ROL: Usuario. </li>
-    <li>OBJETIVO: Ver los detalles de contenido. </li>
-    <li>MOTIVACIÓN: Obtener más información sobre el contenido. </li>
-    <li>CONDICIONES:
-        <ul>
-            <li>Clickar en un poster que corresponde a un contenido.</li>
-        </ul>
-    </li>
-</ul>
-
 ### Historia de usuario - Asceder a la página web del contenido
 
 <p>
@@ -450,8 +433,114 @@
     </li>
 </ul>
 
+### Historia de usuario - Entrar en la pagina de movies
 
+<p>
+    <strong>COMO</strong> usuario <strong>QUIERO</strong> entrar en la página de movies
+    <strong>PARA</strong> ver las series más valoredas, etc.
+</p>
 
+<ul>
+    <li>ROL: Usuario. </li>
+    <li>OBJETIVO: Entrar en la página de series </li>
+    <li>MOTIVACIÓN: Ver las series más valoredas, etc. </li>
+    <li>CONDICIONES:
+        <ul>
+            <li> Clickar en el botón de movies. </li>
+        </ul>
+    </li>
+</ul>
+
+### Historia de usuario - Entrar en la pagina de series
+
+<p>
+    <strong>COMO</strong> usuario <strong>QUIERO</strong> entrar en la página de series
+    <strong>PARA</strong> ver las series más valoredas, etc.
+</p>
+
+<ul>
+    <li>ROL: Usuario. </li>
+    <li>OBJETIVO: Entrar en la página de series </li>
+    <li>MOTIVACIÓN: Ver las series más valoredas, etc. </li>
+    <li>CONDICIONES:
+        <ul>
+            <li> Clickar en el botón de series. </li>
+        </ul>
+    </li>
+</ul>
+
+### Historia de usuario - Seleccionar un contenido en el carousel
+
+<p>
+    <strong>COMO</strong> usuario <strong>QUIERO</strong> seleccionar una posición en el carousel
+    <strong>PARA</strong> ver la valoración, la imagen, el título y un botón para más información sobre el contendido seleccionado.
+</p>
+
+<ul>
+    <li>ROL: Usuario. </li>
+    <li>OBJETIVO: Seleccionar una posición en el carousel </li>
+    <li>MOTIVACIÓN: Ver la valoración, la imagen, el título y un botón para más información sobre el contenido seleccionado. </li>
+    <li>CONDICIONES:
+        <ul>
+            <li> Clickar en el botón redondo que se encuentra dentro del carousel. </li>
+        </ul>
+    </li>
+</ul>
+
+### Historia de usuario - Ver el siguiente grupo de contenidos
+
+<p>
+    <strong>COMO</strong> usuario <strong>QUIERO</strong> avanzar una posición en el grupo de contenidos <strong>PARA</strong> ver los posters de los contenidos anteriores.
+</p>
+
+<ul>
+    <li>ROL: Usuario. </li>
+    <li>OBJETIVO: Avanzar una posición en el grupo de contenidos. </li>
+    <li>MOTIVACIÓN: Ver los posters de los contenidos posteriores. </li>
+    <li>CONDICIONES:
+        <ul>
+            <li> Clickar en el icono de la flecha hacia la derecha en el slider 
+            si la flecha existe. </li>
+        </ul>
+    </li>
+</ul>
+
+### Historia de usuario - Ver el anterior grupo de contenidos
+
+<p>
+    <strong>COMO</strong> usuario <strong>QUIERO</strong> retroceder una posición en el grupo de contenidos <strong>PARA</strong> ver los posters de los contenidos posteriores.
+</p>
+
+<ul>
+    <li>ROL: Usuario. </li>
+    <li>OBJETIVO: Avanzar una posición en el grupo de contenidos. </li>
+    <li>MOTIVACIÓN: Ver los posters de los contenidos anteriores. </li>
+    <li>CONDICIONES:
+        <ul>
+            <li> Clickar en el icono de la flecha hacia la izquierda en el slider
+            si la flecha existe. </li>
+        </ul>
+    </li>
+</ul>
+
+### Historia de usuario - Ver detalles de los contenidos 
+
+<p>
+    <strong>COMO</strong> usuario <strong>QUIERO</strong> ver los detalles de los contenidos <strong>PARA</strong> obtener más información sobre el contenido.
+</p>
+
+<ul>
+    <li>ROL: Usuario. </li>
+    <li>OBJETIVO: Ver los detalles de contenido. </li>
+    <li>MOTIVACIÓN: Obtener más información sobre el contenido. </li>
+    <li>CONDICIONES:
+        <ul>
+            <li>Clickar en un poster que corresponde a un contenido 
+            o clickar en el botón 
+            de ver detalles en la página de movies o series.</li>
+        </ul>
+    </li>
+</ul>
 
 
 
