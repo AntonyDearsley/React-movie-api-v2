@@ -8,9 +8,6 @@ import "./index.css";
 export default function Login() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-    const [password2, setPassword2] = useState("")
-    const [email, setEmail] = useState("")
-
     
     const handleClick = () => {
         window.history.back()
@@ -19,18 +16,19 @@ export default function Login() {
     const handleSubmit = e => {
         e.preventDefault()
 
-        const params = { username , email , password, password2 }
 
-        const validate = db.validateRegister(params)
+        const login = db.getUser(username, password)
+        login.then(response =>{
 
-        if (validate.res) {
-            
-            db.insertUser(params).then(response => {
-                response === 'true' ? alert('El Usuario ha sido creado con éxito')
-                : alert('El usuario o correo eléctronico ya esta en uso')  
-            })
-           
-        } else alert(validate.message)
+            if (response.value === 'true') {
+                alert('Has iniciado sesión con éxito')
+            } else {
+                alert(response.message)
+            }
+
+        })
+
+        
     }
 
     return <div className='h-screen flex flex-col bg-zinc-900 border-8 border-green-400'>
@@ -50,27 +48,22 @@ export default function Login() {
                 <form className=' flex flex-col items-center font-Montserrat' onSubmit={handleSubmit}>
 
                     <div className='mb-4 flex flex-col'>
-                        <TextField className='item' type="text" label="Usuario"id="standard-basic" variant="standard" name='username' value={username} onChange={e => setUsername(e.target.value)} />
-                    </div>
-
-                    <div className='mb-4 flex flex-col'>
-                        <TextField label="Correo"id="standard-basic" variant="standard" value={email} onChange={e => setEmail(e.target.value)}/>
+                        <TextField className='item' type="text" label="Usuario o Correo" id="standard-basic" variant="standard" name='username' value={username} onChange={e => setUsername(e.target.value)} />
                     </div>
 
                     <div className='mb-4 flex flex-col'>
                         <TextField label="Contraseña"id="standard-basic" variant="standard" name='password' value={password} onChange={e => setPassword(e.target.value)} />
                     </div>
 
-                    <div className='mb-4 flex flex-col'>
-                        <TextField label="Confirmar contraseña"id="standard-basic" variant="standard" value={password2} onChange={e => setPassword2(e.target.value)} />
-                    </div>
-
                     <div className='w-full '>
                         <input className='bg-green-600 border-2 border-green-600 font-bold w-full 
                         rounded-lg hover:cursor-pointer hover:bg-zinc-900  hover:text-green-500' 
-                        type="submit" name='submit' value='Crear' />
+                        type="submit" name='submit' value='Iniciar Sesion' />
                     </div>
                 </form>
+
+                
+                <a href="/signup"> No tienes cuenta aún?</a>
             </div>
 
         </section>
