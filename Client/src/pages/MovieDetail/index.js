@@ -7,14 +7,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useMovieVideo } from '../../hooks/useMovieVideo'
 import { Carousel } from 'react-responsive-carousel';
 import { useMovieCredits } from '../../hooks/useMovieCredits'
+import * as db from '../../services/db_funtion';
 import "./index.css"
+import { useEnableHeart } from '../../hooks/useEnableHeart'
 
 
 export default function MovieDetail({ params }) {
     const { id } = params
     const parameter = useMovieDetail(id)
     const results = useMovieVideo(id)
-    const [enable, setEnable] = useState(false)
+    const {stage, setStage} = useEnableHeart({ type: "M", id_multi: id, id_user: 1 })
     const actors = useMovieCredits(id)
 
     const handleClick = () => {
@@ -22,9 +24,13 @@ export default function MovieDetail({ params }) {
     }
 
     const heartClick = () => {
-        setEnable(!enable)
-    }
+        const { title } = parameter
+        !stage.value ? db.insertFav({ title: title, type: "M", id_multi: id, id_user: 1 }) 
+        : db.deletetFav({ type: "M", id_multi: id, id_user: 1 })
 
+        setStage(!stage.value)
+    }
+    
     const listClick = () => {
         alert("añadido a tu Lista")
     }
@@ -86,9 +92,22 @@ export default function MovieDetail({ params }) {
                         <p>PUNTUACION Y FAVORITO</p>
                     </div>
                     <div className='flex justify-center w-full'>
-                        <FontAwesomeIcon icon={enable === true ? faHeartSolid : faHeartRegular}
-                            onClick={heartClick} className={enable === true ?
-                            'icon-selected' : 'icon-unselected' } />
+
+
+
+                        {
+                            stage.loading ? <div className='container flex justify-center items-center h-1/2 '>
+                            <span className="loader  " />
+                            </div>
+                            :
+                             <FontAwesomeIcon icon={ stage.value === true ? faHeartSolid : faHeartRegular} 
+                                onClick={heartClick} className={stage.value === true ?
+                                'icon-selected' : 'icon-unselected' } />
+
+                        }
+
+                        
+                        
 
                         <FontAwesomeIcon icon={faListAlt}
                             onClick={listClick} className='h-10 text-zinc-100 hover:cursor-pointer mx-4' />
