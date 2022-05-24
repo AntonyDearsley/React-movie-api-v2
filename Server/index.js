@@ -28,6 +28,16 @@ app.get('/get/allUsers', (req, res) => {
 })
 
 // get all the data of one user in the database by name (by POST method)
+app.post('/get/user', (req, res) => {
+  const id = req.body.id;
+  const SelectQuery = "SELECT * FROM USUARIOS WHERE ID = ?";
+  db.query(SelectQuery, id,(err, result) => {
+    if (err) res.status(400).send('ERROR: ' + err + ' RESULT: ' + result)
+    else res.send(result)
+  })
+})
+
+// get all the data of one user in the database by name (by POST method)
 app.post('/get/user/name', (req, res) => {
   const name = req.body.name;
   const SelectQuery = "SELECT * FROM USUARIOS WHERE NOMBRE = ?";
@@ -109,7 +119,7 @@ app.put("/update/user/Password/", (req, res) => {
 
 // get all the multimedia of one user in the database by id (by POST method)
 app.post('/get/fav/multimedia', (req, res) => {
-  const id = req.body.id;
+  const id = req.body.id_user;
   const SelectQuery = "SELECT * FROM FAVORITOS WHERE ID_USUARIO = ?";
   db.query(SelectQuery, id ,(err, result) => {
     if (err) res.status(400).send('BAD REQUEST')
@@ -159,7 +169,7 @@ app.delete("/delete/fav/multimedia", (req, res) => {
 
 // get all the multimedia of one user in the database by id (by POST method)
 app.post('/get/list/multimedia', (req, res) => {
-  const id = req.body.id;
+  const id = req.body.id_user;
   const SelectQuery = "SELECT * FROM LISTA WHERE ID_USUARIO = ?";
   db.query(SelectQuery, id ,(err, result) => {
     if (err) res.status(400).send('BAD REQUEST')
@@ -169,14 +179,14 @@ app.post('/get/list/multimedia', (req, res) => {
 
 // add a multimedia to list table in the database
 app.post("/insert/list/multimedia", (req, res) => {
-  const name = req.body.name;
+  const title = req.body.title;
   const type = req.body.type;
   const id_multi= req.body.id_multi;
   const id_user= req.body.id_user;
 
   const InsertQuery =
   "INSERT INTO LISTA (NOMBRE, TIPO, ID_MULTIMEDIA,  ID_USUARIO) VALUES (?, ?, ?, ?)";
-  db.query(InsertQuery, [name, type, id_multi, id_user], (err) => {
+  db.query(InsertQuery, [title, type, id_multi, id_user], (err) => {
     if (err) res.status(400).send('BAD REQUEST')
     else res.status(200).send('OK')
   })
@@ -192,6 +202,18 @@ app.delete("/delete/list/multimedia", (req, res) => {
     else res.status(200).send('OK')
   })
 })
+
+app.post('/search/list/multimedia', (req, res) => {
+  const type = req.body.type;
+  const id_multi= req.body.id_multi;
+  const id_user= req.body.id_user;
+  const SelectQuery = "SELECT * FROM LISTA WHERE TIPO = ? AND ID_MULTIMEDIA = ? AND ID_USUARIO = ?";
+  db.query(SelectQuery, [type, id_multi, id_user] ,(err, result) => {
+    if (err) res.status(400).send('BAD REQUEST')
+    else res.send(result)
+  })
+})
+
 
 
 
