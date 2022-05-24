@@ -34,7 +34,7 @@ export default function Serie() {
         pushLocation(`/serie/detail/${id}`)
     }
 
-    return <div className='h-full bg-black flex flex-col relative'>
+    return <div className='h-full overflow-x-hidden bg-black flex flex-col relative'>
 
 
         <section className='w-full h-12 flex items-center bg-zinc-900/70 absolute z-10'>
@@ -72,7 +72,7 @@ export default function Serie() {
 
                                 <div className="text-white text-shadow 
                                 w-full text-left font-Montserrat py-1">
-                                    <FontAwesomeIcon icon={faStar} className='text-yellow-400 
+                                    <FontAwesomeIcon icon={faStar} className='text-yellow-400
                                     text-shadow ' /> {element.vote_average} / 10 </div>
                                 <div className={element.name.length > 33 ? "title large text-shadow w-full py-3" : "title extralarge text-shadow  w-full py-6"}> {element.name} </div>
                                 
@@ -99,29 +99,33 @@ export default function Serie() {
                 infiniteLoop={true}
                 gutter={2}
                 chevronWidth={30}
-                numberOfCards={5}
-                slidesToScroll={5}
+                numberOfCards={window.innerWidth < 500? 3 : 5}
+                slidesToScroll={window.innerWidth < 500? 3 : 5}
                 outsideChevron={true}
                 activeItemIndex={activeItemIndex}
                 requestToChangeActive={setActiveItemIndex}
                 rightChevron={
 
-                    <button className='text-white bg-zinc-800 h-1/2 rounded-full 
+                    window.innerWidth > 500?
+                        <button className='text-white bg-zinc-800 h-1/2 rounded-full 
                 border-2 border-white ml-7 hover:bg-red-500 w-8
                 hover:border-red-500 hover:border-4'>
 
-                        <FontAwesomeIcon icon={faAngleRight} className='h-2/5' />
+                            <FontAwesomeIcon icon={faAngleRight} className='h-2/5' />
 
-                    </button>}
+                        </button> : false
+                    }
 
                 leftChevron={
-                    <button className='text-white bg-zinc-800 h-1/2  
+                    window.innerWidth > 500?
+                        <button className='text-white bg-zinc-800 h-1/2  
                 rounded-full border-2 w-8
                 border-white mr-7 hover:bg-red-500
                 hover:border-red-500 hover:border-4' >
 
-                        <FontAwesomeIcon icon={faAngleLeft} className='h-2/5' />
-                    </button>}
+                            <FontAwesomeIcon icon={faAngleLeft} className='h-2/5' />
+                        </button> : false
+                    }
 
             >
                 {
@@ -150,8 +154,8 @@ export default function Serie() {
                 infiniteLoop={true}
                 gutter={2}
                 chevronWidth={30}
-                numberOfCards={5}
-                slidesToScroll={5}
+                numberOfCards={window.innerWidth < 500? 3 : 5}
+                slidesToScroll={window.innerWidth < 500? 3 : 5}
                 outsideChevron={true}
                 activeItemIndex={activeItemIndex1}
                 requestToChangeActive={setActiveItemIndex1}
@@ -166,13 +170,15 @@ export default function Serie() {
                     </button>}
 
                 leftChevron={
-                    <button className='text-white bg-zinc-800 h-1/2  
+                    window.innerWidth > 500?
+                        <button className='text-white bg-zinc-800 h-1/2  
                 rounded-full border-2 w-8
                 border-white mr-7 hover:bg-red-500
                 hover:border-red-500 hover:border-4' >
 
-                        <FontAwesomeIcon icon={faAngleLeft} className='h-2/5' />
-                    </button>}
+                            <FontAwesomeIcon icon={faAngleLeft} className='h-2/5' />
+                        </button> : false
+                    }
 
             >
                 {
@@ -201,29 +207,33 @@ export default function Serie() {
                 infiniteLoop={true}
                 gutter={2}
                 chevronWidth={30}
-                numberOfCards={5}
-                slidesToScroll={5}
+                numberOfCards={window.innerWidth < 500? 3 : 5}
+                slidesToScroll={window.innerWidth < 500? 3 : 5}
                 outsideChevron={true}
                 activeItemIndex={activeItemIndex2}
                 requestToChangeActive={setActiveItemIndex2}
                 rightChevron={
 
-                    <button className='text-white bg-zinc-800 h-1/2 rounded-full 
+                    window.innerWidth > 500?
+                        <button className='text-white bg-zinc-800 h-1/2 rounded-full 
                 border-2 border-white ml-7 hover:bg-red-500 w-8
                 hover:border-red-500 hover:border-4'>
 
-                        <FontAwesomeIcon icon={faAngleRight} className='h-2/5' />
+                            <FontAwesomeIcon icon={faAngleRight} className='h-2/5' />
 
-                    </button>}
+                        </button> : false
+                    }
 
                 leftChevron={
-                    <button className='text-white bg-zinc-800 h-1/2  
+                    window.innerWidth > 500?
+                        <button className='text-white bg-zinc-800 h-1/2  
                 rounded-full border-2 w-8
                 border-white mr-7 hover:bg-red-500
                 hover:border-red-500 hover:border-4' >
 
-                        <FontAwesomeIcon icon={faAngleLeft} className='h-2/5' />
-                    </button>}
+                            <FontAwesomeIcon icon={faAngleLeft} className='h-2/5' />
+                        </button> : false
+                    }
 
             >
                 {

@@ -34,7 +34,7 @@ export default function Movies() {
         pushLocation(`/movie/detail/${id}`)
     }
 
-    return <div className='h-full bg-black flex flex-col relative'>
+    return <div className='h-full overflow-x-hidden bg-black flex flex-col relative'>
 
 
         <section className='w-full h-12 flex items-center bg-zinc-900/70 absolute z-10'>
@@ -75,7 +75,7 @@ export default function Movies() {
                                     <FontAwesomeIcon icon={faStar} className='text-yellow-400 
                                     text-shadow ' /> {element.vote_average} / 10 </div>
                                 <div className={element.title.length > 33 ? "title large text-shadow w-full py-3" : "title extralarge text-shadow  w-full py-6"}> {element.title} </div>
-                                
+
                                 <button className="h-10 w-28 border-2 boder-zinc-100 
                                 font-sans font-bold text-white bg-black rounded-full 
                                 hover:bg-red-600 hover:border-0" onClick={handleDetails}
@@ -99,39 +99,42 @@ export default function Movies() {
                 infiniteLoop={true}
                 gutter={2}
                 chevronWidth={30}
-                numberOfCards={5}
-                slidesToScroll={5}
+                numberOfCards={window.innerWidth < 500 ? 3 : 5}
+                slidesToScroll={window.innerWidth < 500 ? 3 : 5}
                 outsideChevron={true}
                 activeItemIndex={activeItemIndex}
                 requestToChangeActive={setActiveItemIndex}
                 rightChevron={
-
-                    <button className='text-white bg-zinc-800 h-1/2 rounded-full 
+                    window.innerWidth > 500 ?
+                        <button className='text-white bg-zinc-800 h-1/2 rounded-full 
                 border-2 border-white ml-7 hover:bg-red-500 w-8
                 hover:border-red-500 hover:border-4'>
 
-                        <FontAwesomeIcon icon={faAngleRight} className='h-2/5' />
+                            <FontAwesomeIcon icon={faAngleRight} className='h-2/5' />
 
-                    </button>}
+                        </button> : false
+                }
 
                 leftChevron={
-                    <button className='text-white bg-zinc-800 h-1/2  
+                    window.innerWidth > 500 ?
+                        <button className='text-white bg-zinc-800 h-1/2  
                 rounded-full border-2 w-8
                 border-white mr-7 hover:bg-red-500
                 hover:border-red-500 hover:border-4' >
 
-                        <FontAwesomeIcon icon={faAngleLeft} className='h-2/5' />
-                    </button>}
+                            <FontAwesomeIcon icon={faAngleLeft} className='h-2/5' />
+                        </button> : false
+                }
 
             >
                 {
                     moviePlaying.results.map(element => {
                         return <div className='h-full rounded-xl flex flex-col overflow-hidden
-                        justify-center border-2 border-white w-4/5 mx-auto hover:border-red-500'  
-                        key={element.id} title={element.vote_average}>
+                        justify-center border-2 border-white w-4/5 mx-auto hover:border-red-500'
+                            key={element.id} title={element.vote_average}>
 
-                            <img className='h-full cursor-pointer' src={element.url} alt={element.title} 
-                            id={element.id} onClick={handleDetails} />
+                            <img className='h-full cursor-pointer' src={element.url} alt={element.title}
+                                id={element.id} onClick={handleDetails} />
 
                             <p className='text-white text-sm font-Montserrat'>{element.title}</p>
                         </div>
@@ -150,39 +153,42 @@ export default function Movies() {
                 infiniteLoop={true}
                 gutter={2}
                 chevronWidth={30}
-                numberOfCards={5}
-                slidesToScroll={5}
+                numberOfCards={window.innerWidth < 500 ? 3 : 5}
+                slidesToScroll={window.innerWidth < 500 ? 3 : 5}
                 outsideChevron={true}
                 activeItemIndex={activeItemIndex1}
                 requestToChangeActive={setActiveItemIndex1}
                 rightChevron={
-
-                    <button className='text-white bg-zinc-800 h-1/2 rounded-full 
+                    window.innerWidth > 500 ?
+                        <button className='text-white bg-zinc-800 h-1/2 rounded-full 
                 border-2 border-white ml-7 hover:bg-red-500 w-8
                 hover:border-red-500 hover:border-4'>
 
-                        <FontAwesomeIcon icon={faAngleRight} className='h-2/5' />
+                            <FontAwesomeIcon icon={faAngleRight} className='h-2/5' />
 
-                    </button>}
+                        </button> : false
+                }
 
                 leftChevron={
-                    <button className='text-white bg-zinc-800 h-1/2  
+                    window.innerWidth > 500 ?
+                        <button className='text-white bg-zinc-800 h-1/2  
                 rounded-full border-2 w-8
                 border-white mr-7 hover:bg-red-500
                 hover:border-red-500 hover:border-4' >
 
-                        <FontAwesomeIcon icon={faAngleLeft} className='h-2/5' />
-                    </button>}
+                            <FontAwesomeIcon icon={faAngleLeft} className='h-2/5' />
+                        </button> : false
+                }
 
             >
                 {
                     movieTop.results.map(element => {
                         return <div className='h-full rounded-xl flex flex-col overflow-hidden
                     justify-center border-2 border-white w-4/5 mx-auto hover:border-red-500'
-                     key={element.id} title={element.vote_average}>
+                            key={element.id} title={element.vote_average}>
 
-                            <img className='h-full cursor-pointer' src={element.url} alt={element.title} 
-                            id={element.id} onClick={handleDetails} />
+                            <img className='h-full cursor-pointer' src={element.url} alt={element.title}
+                                id={element.id} onClick={handleDetails} />
 
                             <p className='text-white text-sm font-Montserrat'>{element.title}</p>
                         </div>
@@ -201,39 +207,43 @@ export default function Movies() {
                 infiniteLoop={true}
                 gutter={2}
                 chevronWidth={30}
-                numberOfCards={5}
-                slidesToScroll={5}
+                numberOfCards={window.innerWidth < 500 ? 3 : 5}
+                slidesToScroll={window.innerWidth < 500 ? 3 : 5}
                 outsideChevron={true}
                 activeItemIndex={activeItemIndex2}
                 requestToChangeActive={setActiveItemIndex2}
                 rightChevron={
 
-                    <button className='text-white bg-zinc-800 h-1/2 rounded-full 
+                    window.innerWidth > 500 ?
+                        <button className='text-white bg-zinc-800 h-1/2 rounded-full 
                 border-2 border-white ml-7 hover:bg-red-500 w-8
                 hover:border-red-500 hover:border-4'>
 
-                        <FontAwesomeIcon icon={faAngleRight} className='h-2/5' />
+                            <FontAwesomeIcon icon={faAngleRight} className='h-2/5' />
 
-                    </button>}
+                        </button> : false
+                }
 
                 leftChevron={
-                    <button className='text-white bg-zinc-800 h-1/2  
+                    window.innerWidth > 500 ?
+                        <button className='text-white bg-zinc-800 h-1/2  
                 rounded-full border-2 w-8
                 border-white mr-7 hover:bg-red-500
                 hover:border-red-500 hover:border-4' >
 
-                        <FontAwesomeIcon icon={faAngleLeft} className='h-2/5' />
-                    </button>}
+                            <FontAwesomeIcon icon={faAngleLeft} className='h-2/5' />
+                        </button> : false
+                }
 
             >
                 {
                     movieComing.results.map(element => {
                         return <div className='h-full rounded-xl flex flex-col overflow-hidden
-                    justify-center border-2 border-white w-4/5 mx-auto hover:border-red-500' 
-                    key={element.id} title={element.vote_average}>
+                    justify-center border-2 border-white w-4/5 mx-auto hover:border-red-500'
+                            key={element.id} title={element.vote_average}>
 
-                            <img className='h-full cursor-pointer' src={element.url} alt={element.title} 
-                            id={element.id} onClick={handleDetails} />
+                            <img className='h-full cursor-pointer' src={element.url} alt={element.title}
+                                id={element.id} onClick={handleDetails} />
 
                             <p className='text-white text-sm font-Montserrat'>{element.title}</p>
                         </div>
