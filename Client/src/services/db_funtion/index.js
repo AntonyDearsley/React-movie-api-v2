@@ -26,7 +26,12 @@ export async function getUser(user, password) {
         return response.then(response => {
             if (response[0].CORREO === user) {
                 if (response[0].CONTRASENA === password) {
-                    return { value: 'true', message: 'todo va bien' }
+                    return { 
+                        value: 'true',
+                        message: 'todo va bien' ,
+                        id: response[0].ID ,
+                        username: response[0].NOMBRE
+                        }
                 } else {
                     return { value: 'false', message: 'No coincide la contraseña' }
                 }
@@ -55,7 +60,12 @@ export async function getUser(user, password) {
         return response.then(response => {
             if (response[0].NOMBRE === user) {
                 if (response[0].CONTRASENA === password) {
-                    return { value: 'true', message: 'todo va bien' }
+                    return { 
+                        value: 'true',
+                        message: 'todo va bien' ,
+                        id: response[0].ID ,
+                        username: response[0].NOMBRE
+                        }
                 } else {
                     return { value: 'false', message: 'No coincide la contraseña' }
                 }
@@ -76,7 +86,7 @@ export function validateRegister(params) {
         email.length < 1 &&
         password.length < 1 &&
         password2.length < 1) {
-        return { value: false, message: 'Los contenedores no pueden estar vacio.' }
+        return { value: false, message: 'Los campos no pueden estar vacio.' }
     } else if (username.includes('@')) {
         return { value: false, message: 'El usuario no debe contener el caracter: @' }
     } else if (!email.includes('@') || email < 5) {
@@ -106,8 +116,6 @@ export async function insertUser(params) {
 
 export async function insertFav(params) {
     const sentence = apiURL + `insert/fav/multimedia`
-
-    console.log(params)
 
     return fetch(sentence, {
         method: 'POST',
@@ -144,6 +152,20 @@ export async function searchMultimediaFav(params) {
         })
 }
 
+export async function searchMultimediaList(params) {
+    const sentence = apiURL + `search/list/multimedia`
+
+    return fetch(sentence, {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(params)
+    })
+        .then(res => res.json())
+        .then(response => {
+            return response.length > 0 ? true : false
+        })
+}
+
 
 export async function insertList(params) {
     const sentence = apiURL + `insert/list/multimedia`
@@ -155,5 +177,47 @@ export async function insertList(params) {
     }).then(response => {
         return response.status === 200 ? 'true' : 'false'
     })
+}
+
+export async function getMultimediaFav(params) {
+    const sentence = apiURL + `get/fav/multimedia`
+
+    return fetch(sentence, {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(params)
+    })
+        .then(res => res.json())
+        .then(response => {
+            return response
+        })
+}
+
+export async function getMultimediaList(params) {
+    const sentence = apiURL + `get/list/multimedia`
+
+    return fetch(sentence, {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(params)
+    })
+        .then(res => res.json())
+        .then(response => {
+            return response
+        })
+}
+
+export async function getProfile(params) {
+    const sentence = apiURL + `get/user`
+
+    return fetch(sentence, {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(params)
+    })
+        .then(res => res.json())
+        .then(response => {
+            return response
+        })
 }
 
