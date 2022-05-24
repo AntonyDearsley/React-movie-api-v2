@@ -8,13 +8,26 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from 'react-responsive-carousel';
 import { useBackdrop } from '../../hooks/useBackdrop'
 
-const list = {
-  'HOME': '/',
-  'MOVIES': '/movie',
-  'SERIES': '/serie',
-  'LINEA': '/',
-  'LOGIN': '/login'
+let list;
+
+if (localStorage.getItem('IdSesion') !== null) {
+   list = {
+    'HOME': '/',
+    'MOVIES': '/movie',
+    'SERIES': '/serie',
+    'LINEA': '/',
+    'LOGIN': '/profile'
+  }
+} else {
+   list = {
+    'HOME': '/',
+    'MOVIES': '/movie',
+    'SERIES': '/serie',
+    'LINEA': '/',
+    'LOGIN': '/login'
+  }
 }
+
 
 export default function Home() {
   const [keyword, setKeyword] = useState('')
