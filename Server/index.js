@@ -71,11 +71,11 @@ app.post("/insert/user", (req, res) => {
 })
 
 // delete a user from the database
-app.delete("/delete/user/id", (req, res) => {
-  const userId = req.body.userId;
+app.delete("/delete/user", (req, res) => {
+  const id = req.body.id;
   const DeleteQuery = "DELETE FROM USUARIOS WHERE ID = ?";
 
-  db.query(DeleteQuery, userId, (err) => {
+  db.query(DeleteQuery, id, (err) => {
     if (err) res.status(400).send('BAD REQUEST')
     else res.status(200).send('OK')
   })
@@ -194,10 +194,14 @@ app.post("/insert/list/multimedia", (req, res) => {
 
 // delete a multimedia from fav list of the database
 app.delete("/delete/list/multimedia", (req, res) => {
-  const user_id = req.body.user_id;
-  const DeleteQuery = "DELETE FROM LISTA WHERE ID_USUARIO = ?";
+  const type = req.body.type;
+  const id_multi= req.body.id_multi;
+  const id_user= req.body.id_user;
 
-  db.query(DeleteQuery, user_id, (err) => {
+  const DeleteQuery = 
+  "DELETE FROM LISTA WHERE TIPO = ? AND ID_MULTIMEDIA = ? AND ID_USUARIO = ?";
+
+  db.query(DeleteQuery, [type, id_multi, id_user], (err) => {
     if (err) res.status(400).send('BAD REQUEST')
     else res.status(200).send('OK')
   })
