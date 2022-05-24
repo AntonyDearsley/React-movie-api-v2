@@ -118,8 +118,8 @@ export default function Profile() {
                                     </div>
                                 </div>
                                 <div className='flex flex-col justify-around h-20'>
-                                    <button className='font-bold font-Montserrat  border w-full border-zinc-100 rounded-md text-zinc-100 hover:cursor-pointer ' onClick={handleSession}>Cerrar Session</button>
-                                    <button className='font-bold font-Montserrat border border-red-600 w-full rounded-md bg-red-600 text-zinc-100 hover:cursor-pointer' onClick={handleAccount}>Eliminar Cuenta</button>
+                                    <button className='font-bold font-Montserrat  border w-full border-zinc-100 rounded-md text-zinc-100 hover:cursor-pointer hover:scale-105' onClick={handleSession}>Cerrar Session</button>
+                                    <button className='font-bold font-Montserrat border border-red-600 w-full rounded-md bg-red-600 text-zinc-100 hover:cursor-pointer hover:scale-105' onClick={handleAccount}>Eliminar Cuenta</button>
                                 </div>
                             </div>
                     }
@@ -185,7 +185,7 @@ export default function Profile() {
                                                     {result.TIPO === 'M' ? 'Película: ' : 'Serie: '}
                                                     {result.NOMBRE}
                                                 </td>
-                                                <td className='flex justify-center items-center hover:cursor-pointer h-full'
+                                                <td className='border hover:cursor-pointer h-full w-1 px-1'
                                                 onClick={()=>{handleDelete(result.ID_MULTIMEDIA, result.TIPO)}} >
                                                     <FontAwesomeIcon className='text-zinc-100' icon={faTrash} />
                                                 </td>
