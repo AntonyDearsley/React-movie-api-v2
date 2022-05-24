@@ -10,29 +10,47 @@ import { useMovieCredits } from '../../hooks/useMovieCredits'
 import * as db from '../../services/db_funtion';
 import "./index.css"
 import { useEnableHeart } from '../../hooks/useEnableHeart'
+import { useLocation } from 'wouter'
+import { useEnableList } from '../../hooks/useEnableList'
 
 
 export default function MovieDetail({ params }) {
     const { id } = params
     const parameter = useMovieDetail(id)
     const results = useMovieVideo(id)
-    const {stage, setStage} = useEnableHeart({ type: "M", id_multi: id, id_user: 1 })
+    const {stage, setStage} = useEnableHeart({ type: "M", id_multi: id, id_user: localStorage.getItem('IdSesion') })
+    const stageList = useEnableList({ type: "M", id_multi: id, id_user: localStorage.getItem('IdSesion') })
     const actors = useMovieCredits(id)
+    const [, pathLocation] = useLocation()
+
 
     const handleClick = () => {
         window.history.back()
     }
 
+    const handleLogin = () => {
+        localStorage.getItem('IdSesion') === null ?
+        pathLocation("/login")
+        : 
+        pathLocation("/profile")
+    }
+
     const heartClick = () => {
         const { title } = parameter
-        !stage.value ? db.insertFav({ title: title, type: "M", id_multi: id, id_user: 1 }) 
-        : db.deletetFav({ type: "M", id_multi: id, id_user: 1 })
+        !stage.value ? db.insertFav({ title: title, type: "M", id_multi: id, id_user: localStorage.getItem('IdSesion') }) 
+        : db.deletetFav({ type: "M", id_multi: id, id_user: localStorage.getItem('IdSesion') })
 
         setStage(!stage.value)
     }
     
     const listClick = () => {
-        alert("La película ha sido añadida a tu Lista")
+        if (stageList.value) {
+            alert("La película ya está en tu lista")
+        } else {
+            const { title } = parameter
+            db.insertList({ title: title, type: "M", id_multi: id, id_user: localStorage.getItem('IdSesion') })
+            alert("La película ha sido añadida a tu Lista")
+        }
     }
 
 
@@ -49,8 +67,13 @@ export default function MovieDetail({ params }) {
             </div>
 
             <div className='mx-14 w-10 flex items-center text-zinc-100 hover:cursor-pointer'
-            onClick={handleClick}>
-                <p>LOGIN</p>
+            onClick={handleLogin}>
+                {
+                    localStorage.getItem('IdSesion') === null ? <p>LOGIN</p>
+                    : <p>{localStorage.getItem('Username')}</p>
+                }
+                
+
                 <FontAwesomeIcon icon={faUser} className='h-8 mx-2' />       
             </div>
         </section>
@@ -102,21 +125,31 @@ export default function MovieDetail({ params }) {
 
 
                         {
-                            stage.loading ? <div className='container flex justify-center items-center h-1/2 '>
-                            <span className="loader  " />
-                            </div>
-                            :
-                             <FontAwesomeIcon icon={ stage.value === true ? faHeartSolid : faHeartRegular} 
+                            localStorage.getItem('IdSesion') !== null ?
+                                stage.loading ?
+                                <></>
+                               
+                                :
+
+                                <FontAwesomeIcon icon={ stage.value === true ? faHeartSolid : faHeartRegular} 
                                 onClick={heartClick} className={stage.value === true ?
                                 'icon-selected' : 'icon-unselected' } />
-
+                            :
+                            <FontAwesomeIcon icon={ faHeartRegular} 
+                            onClick={()=>{alert('Debe haber iniciado sesión antes de realizar esta acción')}}
+                             className={'icon-unselected' } />
                         }
-
                         
-                        
-
-                        <FontAwesomeIcon icon={faListAlt}
-                            onClick={listClick} className='h-10 text-zinc-100 hover:cursor-pointer mx-4' />
+                        {
+                            localStorage.getItem('IdSesion') !== null ?
+                            <FontAwesomeIcon icon={faListAlt}
+                            onClick={listClick} className='h-10 text-zinc-100 hover:cursor-pointer mx-4' /> 
+                            :
+                            <FontAwesomeIcon icon={faListAlt}
+                            onClick={()=>{alert('Debe haber iniciado sesión antes de realizar esta acción')}} 
+                            className='h-10 text-zinc-100 hover:cursor-pointer mx-4' /> 
+                        }
+                            
                     </div>
                 </div>
                 <div className=' h-3/4 w-full relative flex justify-center items-center'>
