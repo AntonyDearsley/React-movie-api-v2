@@ -9,8 +9,8 @@
     sm:w-80 
     sm:ml-10 
     flex
-    sm:flex-col
-    flex-row
+    flex-col
+    h-[25%]
 }
 
 .menuH {
