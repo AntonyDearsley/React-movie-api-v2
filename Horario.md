@@ -112,4 +112,6 @@ Elaboración de actividad describiendo el horario, creación de clave pública p
 | 18/05/22 | 7     | Creando esquema sql y configurazión de database   | Ninguna                              | Nada                                     |
 | 19/05/22 | 7     | Refactorizando docker files                       | Ninguna                              | Nada                                     |
 | 20/05/22 | 16    | Agregando funciones conjunto a la base de datos   | Ninguna                              | Nada                                     |
-
+| 22/05/22 | 7     | Tareas de registro e historias de usuarios        | Ninguna                              | Nada                                     |
+| 23/05/22 | 7     | Creacion de Listas en el Perfil y funcionalidad de contraseña |Ninguna                   | Nada                                     |
+| 24/05/22 | 7     | Resposabilidad y Refactorizacion                  | Ninguna                              | Nada                                     |
