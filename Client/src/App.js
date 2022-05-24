@@ -12,6 +12,7 @@ import MovieDetail from './pages/MovieDetail';
 import SerieDetail from './pages/SerieDetail';
 import Login from './pages/Login';
 import SignUp from './pages/Signup';
+import Profile from './pages/Profile';
 
 
 export default function App() {
@@ -40,6 +41,12 @@ export default function App() {
           component={SignUp}
           path="/Signup"
         />
+
+      <Route 
+          component={Profile}
+          path="/Profile"
+        />
+
 
       <Route
         component={SearchAll}
