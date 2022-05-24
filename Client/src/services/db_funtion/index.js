@@ -179,6 +179,19 @@ export async function insertList(params) {
     })
 }
 
+export async function deletetList(params) {
+    const sentence = apiURL + `delete/list/multimedia`
+
+    return fetch(sentence, {
+        method: 'DELETE',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(params)
+    }).then(response => {
+        return response.status === 200 ? 'true' : 'false'
+    })
+}
+
+
 export async function getMultimediaFav(params) {
     const sentence = apiURL + `get/fav/multimedia`
 
@@ -219,5 +232,17 @@ export async function getProfile(params) {
         .then(response => {
             return response
         })
+}
+
+export async function deleteUser(params) {
+    const sentence = apiURL + `delete/user`
+
+    return fetch(sentence, {
+        method: 'DELETE',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(params)
+    }).then(response => {
+        return response.status === 200 ? 'true' : 'false'
+    })
 }
 
