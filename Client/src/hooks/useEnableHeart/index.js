@@ -10,7 +10,6 @@ export function useEnableHeart(params) {
     useEffect(() => {
         db.searchMultimediaFav(params)
             .then(enable => { 
-                console.log("Consolelog de useEnableHeart enable =" + enable)
                 setTimeout(() => {
                     setStage({ loading: false, value: enable })
                   }, 500)
