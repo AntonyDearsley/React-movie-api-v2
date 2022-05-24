@@ -1,5 +1,5 @@
 .article {
-    @apply  p-4
+    @apply sm:p-4
     my-3
     hover:cursor-pointer 
     hover:bg-gray-400  
@@ -26,7 +26,7 @@
 }
 
 .lineaV {
-    @apply  border-t-2 border-amber-500 mt-10
+    @apply  border-t-2 border-amber-500 sm:mt-10
 }
 
 .lineaH {
