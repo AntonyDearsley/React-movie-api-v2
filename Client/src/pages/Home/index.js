@@ -6,34 +6,18 @@ import { faSearch } from '@fortawesome/fontawesome-free-solid'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
-import { useBackdrop } from '../../hooks/useBackdrop'
-
-let list;
-
-if (localStorage.getItem('IdSesion') !== null) {
-   list = {
-    'HOME': '/',
-    'MOVIES': '/movie',
-    'SERIES': '/serie',
-    'LINEA': '/',
-    'LOGIN': '/profile'
-  }
-} else {
-   list = {
-    'HOME': '/',
-    'MOVIES': '/movie',
-    'SERIES': '/serie',
-    'LINEA': '/',
-    'LOGIN': '/login'
-  }
-}
-
+import { useBackdrop } from '../../hooks/useBackdrop';
+import { useMenu } from '../../hooks/useMenu';
 
 export default function Home() {
   const [keyword, setKeyword] = useState('')
   const [, pushLocation] = useLocation()
   const parameter = useBackdrop()
+  const list = useMenu()
+
+  //Top of Movie and Serie
   let i = -1
+
 
   const handleSubmit = e => {
     e.preventDefault()
